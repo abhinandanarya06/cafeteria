@@ -2,8 +2,6 @@
   <h2> Your Cart </h2>
   <%
     total_price = 0
-    menu_items_ids = []
-    menu_items_quantities = []
   %>
   <ul>
     <% Cart.all.each do |item| %>
@@ -14,8 +12,6 @@
         <% else %>
           <%
             total_price += item.quantity * item.menu_item_price
-            menu_items_ids.push(item.menu_item_id)
-            menu_items_quantities.push(item.quantity)
           %>
 
           Rs <%= item.menu_item_price %>
@@ -38,8 +34,6 @@
 
 
   <%= form_with url: "/orders", method: "post" do |form| %>
-    <%= form.text_field :ids, value: menu_items_ids.join(" "), style: "display: none" %>
-    <%= form.text_field :quantities, value: menu_items_quantities.join(" "), style: "display: none" %>
     <%= form.submit "Order Now" %>
   <% end %>
 </section>

@@ -5,22 +5,22 @@ class OrdersController < ApplicationController
 
   def create
     user_id = @current_user.id
-    items_ids = params[:ids].split
-    items_quantities = params[:quantities].split
-    new_order = Order.new(
+    new_order = Order.create(
       date: Date.today,
       user_id: user_id,
     )
-    items_ids.each.with_index { |id, i|
-      OrderItem.create(
-        order_id: new_order.id,
-        menu_item_id: id,
-        menu_item_name: MenuItem.find(id).name,
-        menu_item_price: items_quantities[i] * MenuItem.find(id).price,
-      )
-      Cart.find_by(menu_item_id: id).destroy
+    Cart.where(user_id: user_id).each { |item|
+      if not MenuItem.where(id: item.menu_item_id).empty?
+        OrderItem.create!(
+          order_id: new_order.id,
+          menu_item_id: item.menu_item_id,
+          menu_item_name: item.menu_item_name,
+          menu_item_price: item.menu_item_price * item.quantity,
+        )
+        Cart.find_by(menu_item_id: item.menu_item_id).destroy
+      end
     }
-    if new_order.save
+    if new_order
       redirect_to "/orders"
     else
       flash[:error] = new_order.errors.full_messages.join(", ")
