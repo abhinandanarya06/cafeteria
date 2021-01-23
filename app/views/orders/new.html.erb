@@ -1,0 +1,13 @@
+<section>
+  <h1> Let's Order for given user </h1>
+
+  <%= form_with url: orders_path do |form| %>
+
+    <div>
+      User Email  :<br/>
+      <%= form.email_field :email %>
+    </div>
+
+    <%= form.submit "Add order queue for given user" %>
+  <% end %>
+</section>
