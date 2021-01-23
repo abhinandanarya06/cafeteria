@@ -1,0 +1,35 @@
+<section>
+  <h2> Users </h2>
+  <%= form_with url: users_path do |form| %>
+      <%= form.text_field :name, placeholder: "User Name" %>
+      <%= form.select :role, ["Customer", "Billing Clerk", "Owner"] %>
+      <%= form.email_field :email, placeholder: "User Email" %>
+      <%= form.password_field :password, placeholder: "User Password" %>
+    <%= form.submit "Add User" %>
+  <% end %>
+  <br/>
+  <table border>
+    <tr>
+      <th>ID</th>
+      <th>Role</th>
+      <th>Name</th>
+      <th>Acc. Created on </th>
+      <th>Acc. Updated on </th>
+      <th>Delete</th>
+    </tr>
+    <% User.all.each do |user| %>
+      <tr>
+        <td> <%= user.id %> </td>
+        <td> <%= user.role %> </td>
+        <td> <%= user.name %> </td>
+        <td> <%= user.created_at %> </td>
+        <td> <%= user.updated_at %> </td>
+        <td>
+          <%= form_with url: "/users/#{user.id}", method: "delete" do |form| %>
+            <%= form.submit "Delete" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</section>

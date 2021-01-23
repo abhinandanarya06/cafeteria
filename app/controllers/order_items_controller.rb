@@ -1,6 +1,4 @@
 class OrderItemsController < ApplicationController
-  skip_before_action :ensure_user_logged_in
-
   def new
     render "order_items/new"
   end

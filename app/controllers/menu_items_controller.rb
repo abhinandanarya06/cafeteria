@@ -1,27 +1,24 @@
 class MenuItemsController < ApplicationController
-  skip_before_action :ensure_user_logged_in
-
   def new
     render "menu_items/new"
   end
 
   def create
-    menu_name = params[:menu_name]
-    menu = Menu.find_by(name: menu_name)
+    menu_id = params[:menu_id]
     name = params[:name]
     description = params[:description]
     price = params[:price]
     new_menu_item = MenuItem.new(
-      menu_id: menu.id,
+      menu_id: menu_id,
       name: name,
       description: description,
       price: price,
     )
     if new_menu_item.save
-      redirect_to "/menu_items"
+      redirect_to "/menus"
     else
       flash[:error] = new_menu_item.errors.full_messages.join(", ")
-      redirect_to new_menu_item_path
+      redirect_to "/menus"
     end
   end
 end

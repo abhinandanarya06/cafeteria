@@ -11,6 +11,20 @@
   </head>
 
   <body>
+    <h1 align="center"> A Cafeteria Company </h1>
+
+    <% if @current_user %>
+
+      <% if @current_user.role == "Owner" %>
+        <%= render partial: "owner-home-menu" %>
+      <% elsif @current_user.role == "Billing Clerk" %>
+        <%= render partial: "clerk-home-menu" %>
+      <% elsif @current_user.role == "Customer" %>
+        <%= render partial: "customer-home-menu" %>
+      <% end %>
+
+    <% end %>
+
     <% if @current_user %>
       <h1> Hi <%= @current_user.name %> ! </h1>
       <h6> <%= link_to "Sign out!", destroy_session_path, method: "delete" %> </h6>
@@ -21,6 +35,7 @@
     <% if flash[:error] %>
       <p> <%= flash[:error] %> </p>
     <% end %>
+
     <%= yield %>
   </body>
 </html>
