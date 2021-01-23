@@ -1,0 +1,27 @@
+<section>
+  <ul>
+    <% Menu.all.each do |menu| %>
+      <li>
+        <h3>
+          <%= menu.name%>
+
+        </h3>
+        <ul>
+          <% menu.menu_items.each do |item| %>
+            <li>
+              <%= "#{item.name}: #{item.description} @ Rs #{item.price}" %>
+                <%= form_with url: "/carts", method: "post" do |form| %>
+                  <%= form.text_field :user_id, value: @current_user.id, style: "display: none" %>
+                  <%= form.text_field :menu_item_id, value: item.id, style: "display: none" %>
+                  <%= form.text_field :menu_item_name, value: item.name, style: "display: none" %>
+                  <%= form.text_field :price, value: item.price, style: "display: none" %>
+                  <%= form.number_field :quantity, placeholder: "Quantity" %>
+                  <%= form.submit "Add to cart" %>
+                <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
+</section>

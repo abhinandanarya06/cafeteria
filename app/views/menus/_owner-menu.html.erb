@@ -1,0 +1,43 @@
+<section>
+  <%= form_with url: menus_path do |form| %>
+      <%= form.text_field :name, placeholder: "Menu Name" %>
+    <%= form.submit "Create Menu !" %>
+  <% end %>
+  <ul>
+    <% Menu.all.each do |menu| %>
+      <li>
+        <h3>
+          <%= menu.name%>
+
+
+            <%= form_with url: "/menus/#{menu.id}", method: "delete" do |form| %>
+              <%= form.submit "Delete Menu ?" %>
+            <% end %>
+            <%= form_with url: menu_items_path do |form| %>
+              <%= form.text_field :menu_id, value: menu.id, style: "display: none" %>
+              <%= form.text_field :name, placeholder: "Item Name" %>
+              <%= form.text_field :description, placeholder: "Description" %>
+              <%= form.number_field :price, placeholder: "Price in Rs per item" %>
+              <%= form.submit "Add menu item to menu" %>
+            <% end %>
+
+        </h3>
+        <ul>
+          <% menu.menu_items.each do |item| %>
+            <li>
+              <%= form_with url: "/menu_items/#{item.id}", method: "patch" do |form| %>
+                <%= form.text_field :name, value: item.name %> :
+                <%= form.text_field :description, value: item.description %> @
+                <%= form.number_field :price, value: item.price %>
+                <%= form.submit "Update Item" %>
+              <% end %>
+              <%= form_with url: "/menu_items/#{item.id}", method: "delete" do |form| %>
+                <%= form.submit "Delete Item ?" %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
+</section>

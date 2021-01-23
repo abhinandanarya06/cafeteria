@@ -1,53 +1,8 @@
 <section>
   <h2> Menus </h2>
   <% if @current_user.role == "Owner" %>
-    <%= form_with url: menus_path do |form| %>
-        <%= form.text_field :name, placeholder: "Menu Name" %>
-      <%= form.submit "Create Menu !" %>
-    <% end %>
+    <%= render partial: "owner-menu" %>
+  <% elsif @current_user.role == "Customer" %>
+    <%= render partial: "customer-menu" %>
   <% end %>
-  <ul>
-    <% Menu.all.each do |menu| %>
-      <li>
-        <h3>
-          <%= menu.name%>
-
-          <% if @current_user.role == "Owner" %>
-            <%= form_with url: "/menus/#{menu.id}", method: "delete" do |form| %>
-              <%= form.submit "Delete Menu ?" %>
-            <% end %>
-            <%= form_with url: menu_items_path do |form| %>
-              <%= form.text_field :menu_id, value: menu.id, style: "display: none" %>
-              <%= form.text_field :name, placeholder: "Item Name" %>
-              <%= form.text_field :description, placeholder: "Description" %>
-              <%= form.number_field :price, placeholder: "Price in Rs per item" %>
-              <%= form.submit "Add menu item to menu" %>
-            <% end %>
-          <% end %>
-
-        </h3>
-        <ul>
-          <% MenuItem.where(menu_id: menu.id).each do |item| %>
-            <li>
-              <%= "#{item.name}: #{item.description} @ Rs #{item.price}" %>
-              <% if @current_user.role == "Owner" %>
-                <%= form_with url: "/menu_items/#{item.id}", method: "delete" do |form| %>
-                  <%= form.submit "Delete Item ?" %>
-                <% end %>
-              <% else %>
-                <%= form_with url: "/carts", method: "post" do |form| %>
-                  <%= form.text_field :user_id, value: @current_user.id, style: "display: none" %>
-                  <%= form.text_field :menu_item_id, value: item.id, style: "display: none" %>
-                  <%= form.text_field :menu_item_name, value: item.name, style: "display: none" %>
-                  <%= form.text_field :price, value: item.price, style: "display: none" %>
-                  <%= form.number_field :quantity, placeholder: "Quantity" %>
-                  <%= form.submit "Add to cart" %>
-                <% end %>
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
-      </li>
-    <% end %>
-  </ul>
 </section>
