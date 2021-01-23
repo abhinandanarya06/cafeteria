@@ -6,8 +6,11 @@ Rails.application.routes.draw do
   resources "menus"
   resources "order_items"
   resources "menu_items"
+  resources "carts"
 
   get "/signin" => "sessions#new", as: :new_signin
   post "/signin" => "sessions#create", as: :signin
   delete "/signout" => "sessions#destroy", as: :destroy_session
+
+  get "/reports", to: "reports#index"
 end
