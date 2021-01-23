@@ -1,0 +1,15 @@
+<section>
+  <h1> Sign In ! </h1>
+
+  <%= form_with url: new_signin_path do |form| %>
+    <div>
+      Email :<br/>
+      <%= form.email_field :email, class: "input__text_field" %>
+    </div>
+    <div>
+      Password :<br/>
+      <%= form.password_field :password, class: "input__text_field" %>
+    </div>
+    <%= form.submit "Sign In !", class: "sign" %>
+  <% end %>
+</section>

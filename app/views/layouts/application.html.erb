@@ -11,6 +11,15 @@
   </head>
 
   <body>
+    <% if @current_user %>
+      <h1> Hi <%= @current_user.name %> ! </h1>
+    <% else %>
+      <h1> Please <a href="/signin">signin</a> or <a href="/users/new">signup</a> here</h1>
+    <% end %>
+
+    <% if flash[:error] %>
+      <p> <%= flash[:error] %> </p>
+    <% end %>
     <%= yield %>
   </body>
 </html>
