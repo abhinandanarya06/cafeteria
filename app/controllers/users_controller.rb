@@ -27,7 +27,7 @@ class UsersController < ApplicationController
       password: password,
     )
     if new_user.save
-      if @current_user.role == "Owner"
+      if @current_user and @current_user.role == "Owner"
         redirect_to "/users"
       else
         session[:current_user_id] = new_user.id
