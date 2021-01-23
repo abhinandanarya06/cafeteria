@@ -5,7 +5,7 @@
 
     <div>
       Menu name  :<br/>
-      <%= form.text_field :menu_name %>
+      <%= form.select :menu, Menu.all.map {|menu| menu.name } %>
     </div>
     <div>
       Item name  :<br/>
