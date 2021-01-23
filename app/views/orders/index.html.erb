@@ -1,5 +1,8 @@
-<ul>
-  <% Order.all.each do |order| %>
-    <li><%= User.find(order.user_id).name %> <%= order.date %></li>
-  <% end %>
-</ul>
+<section>
+  <h2> Orders </h2>
+  <ul>
+    <% Order.all.each do |order| %>
+      <li><%= User.find(order.user_id).name %> <%= order.date %></li>
+    <% end %>
+  </ul>
+</section>

@@ -1,13 +1,16 @@
-<ul>
-  <% OrderItem.all.each do |item| %>
-    <% order = Order.find(item.order_id)
-       menu_item = MenuItem.find(item.menu_item_id)
-       menu = Menu.find(menu_item.menu_id) %>
-    <li>
-      menu: <%= menu.name %>
-      item: <%= menu_item.name %>
-      on <%= order.date %>
-      by <%= User.find(order.user_id).name %>
-    </li>
-  <% end %>
-</ul>
+<section>
+  <h2> Order Items </h2>
+  <ul>
+    <% OrderItem.all.each do |item| %>
+      <% order = Order.find(item.order_id)
+        menu_item = MenuItem.find(item.menu_item_id)
+        menu = Menu.find(menu_item.menu_id) %>
+      <li>
+        menu: <%= menu.name %>
+        item: <%= menu_item.name %>
+        on <%= order.date %>
+        by <%= User.find(order.user_id).name %>
+      </li>
+    <% end %>
+  </ul>
+</section>
