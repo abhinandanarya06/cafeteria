@@ -1,14 +1,17 @@
 <section>
   <h2> Menus </h2>
-  <%= form_with url: menus_path do |form| %>
-      <%= form.text_field :name, placeholder: "Menu Name" %>
-    <%= form.submit "Create Menu !" %>
+  <% if @current_user.role == "Owner" %>
+    <%= form_with url: menus_path do |form| %>
+        <%= form.text_field :name, placeholder: "Menu Name" %>
+      <%= form.submit "Create Menu !" %>
+    <% end %>
   <% end %>
   <ul>
     <% Menu.all.each do |menu| %>
       <li>
         <h3>
           <%= menu.name%>
+
           <% if @current_user.role == "Owner" %>
             <%= form_with url: "/menus/#{menu.id}", method: "delete" do |form| %>
               <%= form.submit "Delete Menu ?" %>
@@ -21,6 +24,7 @@
               <%= form.submit "Add menu item to menu" %>
             <% end %>
           <% end %>
+
         </h3>
         <ul>
           <% MenuItem.where(menu_id: menu.id).each do |item| %>

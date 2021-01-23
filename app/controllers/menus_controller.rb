@@ -1,9 +1,11 @@
 class MenusController < ApplicationController
   def new
+    ensure_owner
     render "menus/new"
   end
 
   def create
+    ensure_owner
     name = params[:name]
     new_menu = Menu.new(name: name)
     if new_menu.save
@@ -15,6 +17,7 @@ class MenusController < ApplicationController
   end
 
   def destroy
+    ensure_owner
     id = params[:id]
     MenuItem.where(menu_id: id).delete_all
     Menu.find(id).destroy

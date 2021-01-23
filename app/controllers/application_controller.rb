@@ -7,6 +7,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def ensure_owner
+    unless @current_user.role == "Owner"
+      redirect_to "/"
+    end
+  end
+
   def current_user
     if @current_user
       return @current_user
