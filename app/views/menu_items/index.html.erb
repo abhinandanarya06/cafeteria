@@ -1,0 +1,10 @@
+<ul>
+  <% MenuItem.all.each do |menu_item| %>
+    <li>
+      <%= Menu.find(menu_item.menu_id).name %>
+      <%= menu_item.name %>
+      <%= menu_item.description %>
+      Rs <%= menu_item.price %>
+    </li>
+  <% end %>
+</ul>
