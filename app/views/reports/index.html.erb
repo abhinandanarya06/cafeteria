@@ -1,7 +1,7 @@
 <section>
   <h2> Orders </h2>
   <ul>
-    <% @current_user.orders.all.each do |order| %>
+    <% Order.all.each do |order| %>
       <li>
         <h3><%= "Ordered on #{order.date} by #{User.find(order.user_id).name}" %></h3>
         <ul>

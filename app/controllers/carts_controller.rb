@@ -19,12 +19,10 @@ class CartsController < ApplicationController
       menu_item_price: price,
       quantity: quantity,
     )
-    if new_item.save
-      redirect_to "/menus"
-    else
+    if not new_item.save
       flash[:error] = new_item.errors.full_messages
-      redirect_to "/menus"
     end
+    redirect_to "/menus"
   end
 
   def update

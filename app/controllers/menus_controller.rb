@@ -1,5 +1,11 @@
 class MenusController < ApplicationController
+  def index
+    current_user
+    render "index"
+  end
+
   def new
+    current_user
     ensure_owner
     render "menus/new"
   end
