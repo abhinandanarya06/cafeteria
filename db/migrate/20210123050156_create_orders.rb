@@ -4,7 +4,7 @@ class CreateOrders < ActiveRecord::Migration[6.1]
       t.date :date
       t.bigint :user_id
       t.datetime :delivered_at
-      t.timestamp
+      t.timestamps
     end
   end
 end
