@@ -13,6 +13,7 @@
   <body>
     <% if @current_user %>
       <h1> Hi <%= @current_user.name %> ! </h1>
+      <h6> <%= link_to "Sign out!", destroy_session_path, method: "delete" %> </h6>
     <% else %>
       <h1> Please <a href="/signin">signin</a> or <a href="/users/new">signup</a> here</h1>
     <% end %>
