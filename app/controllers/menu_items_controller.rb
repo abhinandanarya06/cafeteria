@@ -24,6 +24,18 @@ class MenuItemsController < ApplicationController
     end
   end
 
+  def update
+    id = params[:id]
+    item = MenuItem.find(id)
+    item.name = params[:name]
+    item.description = params[:description]
+    item.price = params[:price].to_f
+    if not item.save
+      flash[:error] = item.errors.full_messages
+    end
+    redirect_to "/menus"
+  end
+
   def destroy
     id = params[:id]
     MenuItem.find(id).destroy

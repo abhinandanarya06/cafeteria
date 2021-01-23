@@ -4,7 +4,7 @@
     total_price = 0
   %>
   <ul>
-    <% Cart.all.each do |item| %>
+    <% @current_user.carts.each do |item| %>
       <li>
         <%= item.menu_item_name %>
         <% if MenuItem.where(id: item.menu_item_id).empty? %>

@@ -6,7 +6,7 @@
         <%= @current_user.name %> <%= order.date %>
         <ul>
           <% order.order_items.each do |item| %>
-            <li><%= "#{item.menu_item_name} @ #{item.menu_item_price}" %></li>
+            <li><%= "#{item.menu_item_name} @ Rs #{item.menu_item_price}" %></li>
           <% end %>
         </ul>
       </li>
