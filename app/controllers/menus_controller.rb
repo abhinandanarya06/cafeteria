@@ -37,7 +37,7 @@ class MenusController < ApplicationController
     ensure_owner
     id = params[:id]
     MenuItem.where(menu_id: id).delete_all
-    Menu.find(id).destroy
+    menu = Menu.find(id).destroy
     redirect_to "/menus"
   end
 end
