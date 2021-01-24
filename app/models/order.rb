@@ -4,5 +4,4 @@ class Order < ActiveRecord::Base
 
   validates :date, presence: true
   validates :user_id, presence: true
-  validates :delivered_at, presence: true
 end
