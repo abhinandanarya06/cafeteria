@@ -3,7 +3,10 @@
   <ul>
     <% @current_user.orders.each do |order| %>
       <li>
-        <%= @current_user.name %> <%= order.date %>
+        <%= @current_user.name %> ordered on <%= order.date.to_s(:long) %>
+        <% if not order.delivered_at.nil? %>
+          delivered on <%= order.delivered_at.to_s(:long) %>
+        <% end %>
         <ul>
           <% order.order_items.each do |item| %>
             <li><%= "#{item.menu_item_name} @ Rs #{item.menu_item_price}" %></li>
