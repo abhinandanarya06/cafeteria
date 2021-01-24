@@ -1,5 +1,5 @@
 body {
-  background: url("back.jpg") fixed;
+  background: url("/assets/back.jpg") fixed;
   height: 100%;
 
   /* Center and scale the image nicely */
