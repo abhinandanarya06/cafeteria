@@ -13,7 +13,7 @@ class MenusController < ApplicationController
   def create
     ensure_owner
     name = params[:name]
-    new_menu = Menu.new(name: name)
+    new_menu = Menu.new(name: name, active: false)
     if new_menu.save
       redirect_to "/menus"
     else
@@ -26,9 +26,9 @@ class MenusController < ApplicationController
     id = params[:id]
     active = params[:active]
     menu = Menu.find(id)
-    menu.active = active
+    menu.active = active == "true"
     if not menu.save
-      flash[:error] = menu.errors.full_messages
+      flash[:error] = menu.errors.full_messages.join(", ")
     end
     redirect_to "/menus"
   end
