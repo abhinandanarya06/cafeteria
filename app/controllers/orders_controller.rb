@@ -27,4 +27,15 @@ class OrdersController < ApplicationController
       redirect_to new_order_path
     end
   end
+
+  def update
+    id = params[:id]
+    date = DateTime.parse(params[:date])
+    order = Order.find(id)
+    order.delivered_at = date
+    if not order.save
+      flash[:error] = order.errors.full_messages.join(", ")
+    end
+    redirect_to "/reports"
+  end
 end

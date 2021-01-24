@@ -3,7 +3,18 @@
   <ul>
     <% Order.all.each do |order| %>
       <li>
-        <h3><%= "Ordered on #{order.date} by #{User.find(order.user_id).name}" %></h3>
+        <% if @current_user.role == "Billing Clerk" %>
+          <% if order.delivered_at.nil? %>
+            <%= form_with(url: "/orders/#{order.id}", method: "patch") do |form| %>
+                  <%= form.date_field :date %>
+                  <%= form.check_box :active ,
+                                    onclick: "this.form.submit()",
+                                    class: "checkbox_active" %>
+            <% end %>
+          <% end %>
+        <% end %>
+        <h3><%= "Ordered on #{order.date.to_s(:long)} by #{User.find(order.user_id).name}" %></h3>
+        <h3><%= "Delivered on #{order.delivered_at.to_s(:long)} " if not order.delivered_at.nil? %></h3>
         <ul>
           <% order.order_items.each do |item| %>
             <li> <%= "#{item.menu_item_name} @ Rs #{item.menu_item_price}" %> </li>
