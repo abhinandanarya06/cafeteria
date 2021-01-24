@@ -18,7 +18,7 @@ class MenusController < ApplicationController
       redirect_to "/menus"
     else
       flash[:error] = new_menu.errors.full_messages.join(", ")
-      redirect_to new_menu_path
+      redirect_to "/menus"
     end
   end
 

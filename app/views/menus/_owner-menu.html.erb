@@ -1,42 +1,56 @@
-<section>
-  <%= form_with url: menus_path do |form| %>
-      <%= form.text_field :name, placeholder: "Menu Name" %>
-    <%= form.submit "Create Menu !" %>
+<section class="center">
+  <%= form_with url: menus_path, class: "flex" do |form| %>
+      <%= form.text_field :name, placeholder: "Menu Name", class:"add_menu" %>
+    <%= form.submit "Create Menu !", class: "btn_createm" %>
   <% end %>
   <ul>
     <% Menu.all.each do |menu| %>
-      <li>
-        <h3>
-          <%= menu.name%>
+      <li class="smooth_border">
+        <h3 class="pad">
+          <div class="flex">
+            <%= menu.name %>
 
-
-            <%= form_with url: "/menus/#{menu.id}", method: "delete" do |form| %>
-              <%= form.submit "Delete Menu ?" %>
+            <%= form_with url: "/menus/#{menu.id}", method: "delete", class: "small_left_pad" do |form| %>
+              <%= image_submit_tag "delete-48.png",
+                          alt: "Delete",
+                          onclick: "this.form.submit()",
+                          class: "trashcan" %>
             <% end %>
+          </div>
+
             <%= form_with url: menu_items_path do |form| %>
               <%= form.text_field :menu_id, value: menu.id, style: "display: none" %>
-              <%= form.text_field :name, placeholder: "Item Name" %>
-              <%= form.text_field :description, placeholder: "Description" %>
-              <%= form.number_field :price, placeholder: "Price in Rs per item" %>
-              <%= form.submit "Add menu item to menu" %>
+              <%= form.text_field :name, placeholder: "Item Name", class: "add_iname" %>
+              <%= form.text_field :description, placeholder: "Description", class: "add_ides" %>
+              <%= form.number_field :price, placeholder: "Price in Rs per item", class: "add_iprice" %>
+              <%= image_submit_tag "add.png",
+                          alt: "Delete",
+                          onclick: "this.form.submit()",
+                          class: "plus" %>
             <% end %>
 
         </h3>
-        <ul>
+        <div class="hide">
+        <ul class="pad">
           <% menu.menu_items.each do |item| %>
-            <li>
+            <li class="flex small_bot_pad">
               <%= form_with url: "/menu_items/#{item.id}", method: "patch" do |form| %>
-                <%= form.text_field :name, value: item.name %> :
-                <%= form.text_field :description, value: item.description %> @
-                <%= form.number_field :price, value: item.price %>
-                <%= form.submit "Update Item" %>
+                <%= form.text_field :name, value: item.name, class: "item_input" %> :
+                <%= form.text_field :description, value: item.description, class: "itemd_input" %> @
+                <%= form.number_field :price, value: item.price, class: "itemp_input" %>
+                <%= form.submit "Update", class: "update_btn" %>
               <% end %>
               <%= form_with url: "/menu_items/#{item.id}", method: "delete" do |form| %>
-                <%= form.submit "Delete Item ?" %>
+                <%= image_submit_tag "delete-48.png",
+                          alt: "Delete",
+                          onclick: "this.form.submit()",
+                          class: "trashcan" %>
               <% end %>
             </li>
           <% end %>
         </ul>
+        </div>
+        <hr/>
       </li>
     <% end %>
   </ul>

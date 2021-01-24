@@ -30,10 +30,15 @@
       </li>
     <% end %>
   </ul>
-  <h3>Total Price : <%= total_price %> </h3>
+  <% if total_price > 0 %>
+    <h3>Total Price : <%= total_price %> </h3>
 
 
-  <%= form_with url: "/orders", method: "post" do |form| %>
-    <%= form.submit "Order Now" %>
+    <%= form_with url: "/orders", method: "post" do |form| %>
+      <%= form.submit "Order Now" %>
+    <% end %>
+  <% else %>
+    <br/><br/>
+    <h3>Cart is empty! <a href="/menus"> Go to menu </a> </h3>
   <% end %>
 </section>

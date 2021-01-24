@@ -1,26 +1,24 @@
-<section>
+<section class="scenter">
   <h1> Welcome new user ! </h1>
 
   <%= form_with url: users_path do |form| %>
-
     <div>
-      Name  :<br/>
-      <%= form.text_field :name %>
-    </div>
-
-    <div>
-      Role :<br/>
+      Role :
       <%= form.select :role, ["Customer", "Billing Clerk", "Owner"] %>
     </div>
-
+    <br/>
+    <div>
+      Name  :<br/>
+      <%= form.text_field :name, class: "credential" %>
+    </div>
     <div>
       Email :<br/>
-      <%= form.email_field :email %>
+      <%= form.email_field :email, class: "credential" %>
     </div>
 
     <div>
       Password :<br/>
-      <%= form.password_field :password %>
+      <%= form.password_field :password, class: "credential" %>
     </div>
 
     <%= form.submit "Sign Up !" %>

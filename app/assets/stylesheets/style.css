@@ -1,0 +1,125 @@
+body {
+  background: url("back.jpg") fixed;
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: sans-serif;
+}
+.flex {
+  display: flex;
+}
+.pad {
+  padding: 10px 10px 10px 10px;
+}
+.small_left_pad {
+  padding-left: 20px;
+}
+.small_left_mar {
+  margin-left: 20px;
+}
+.small_bot_pad {
+  padding-bottom: 10px;
+}
+.hide {
+  display: none;
+}
+li:hover > div {
+  display: block;
+}
+li:hover {
+  background-color: rgb(255, 211, 248);
+}
+.smooth_border {
+  border-radius: 10px;
+}
+.trashcan {
+  width: 20px;
+  height: 20px;
+  padding-left: 10px;
+}
+.plus {
+  width: 20px;
+  height: 20px;
+}
+.center {
+  max-width: 900px;
+  margin: 8px auto;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px 10px 10px 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 10px;
+  min-height: 400px;
+}
+.disable_list {
+  list-style: none;
+}
+.item_input {
+  height: 30px;
+  width: 100px;
+}
+
+.itemd_input {
+  height: 30px;
+  width: 200px;
+}
+
+.itemp_input {
+  height: 30px;
+  width: 100px;
+}
+.update_btn {
+  background-color: aqua;
+  height: 30px;
+  width: 80px;
+  border: none;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+.add_iname {
+  height: 20px;
+  width: 200px;
+}
+.add_ides {
+  height: 20px;
+  width: 300px;
+}
+.add_iprice {
+  height: 20px;
+  width: 200px;
+}
+.add_menu {
+  height: 30px;
+  width: 200px;
+}
+.btn_createm {
+  background-color: rgb(115, 255, 110);
+  height: 40px;
+  width: 100px;
+  border: none;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+.error {
+  max-width: 600px;
+  border-radius: 5px;
+  margin: 8px auto;
+  padding: 10px 10px 10px 10px;
+  color: red;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  background-color: yellow;
+  font-size: 20px;
+}
+.credential {
+  max-width: 300px;
+  width: 300px;
+  height: 30px;
+  margin-bottom: 20px;
+}
+.scenter {
+  max-width: 300px;
+  margin: 8px auto;
+}
