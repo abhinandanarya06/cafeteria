@@ -22,6 +22,17 @@ class MenusController < ApplicationController
     end
   end
 
+  def update
+    id = params[:id]
+    active = params[:active]
+    menu = Menu.find(id)
+    menu.active = active
+    if not menu.save
+      flash[:error] = menu.errors.full_messages
+    end
+    redirect_to "/menus"
+  end
+
   def destroy
     ensure_owner
     id = params[:id]

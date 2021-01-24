@@ -3,11 +3,18 @@
       <%= form.text_field :name, placeholder: "Menu Name", class:"add_menu" %>
     <%= form.submit "Create Menu !", class: "btn_createm" %>
   <% end %>
-  <ul>
+  <ul class="disable_list">
     <% Menu.all.each do |menu| %>
       <li class="smooth_border">
         <h3 class="pad">
           <div class="flex">
+            <%= form_with(url: "/menus/#{menu.id}", action: "patch") do |form| %>
+              <%= form.check_box :active ,
+                                onclick: "this.form.submit()",
+                                class: "checkbox_active",
+                                checked: menu.active %>
+            <% end %>
+
             <%= menu.name %>
 
             <%= form_with url: "/menus/#{menu.id}", method: "delete", class: "small_left_pad" do |form| %>
