@@ -1,8 +1,6 @@
 # Cafeteria Management System
 
-<img src="https://img.shields.io/badge/Ruby-on%20Rails-red">
-<img src="https://img.shields.io/badge/PupilFirst-Training-green">
-<img src="https://img.shields.io/badge/cafeteria-project-yellow">
+<img src="https://img.shields.io/badge/Ruby-on%20Rails-red"> <img src="https://img.shields.io/badge/PupilFirst-Training-green"> <img src="https://img.shields.io/badge/cafeteria-project-yellow">
 
 ---
 
