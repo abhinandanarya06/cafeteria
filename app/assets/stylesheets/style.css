@@ -118,3 +118,15 @@ li:hover {
   width: 15px;
   height: 15px;
 }
+.welcome_user {
+  background-color: darkgray;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 800px;
+  margin: 10px auto;
+  font-family: sans-serif;
+  color: black;
+  padding: 10px 10px 10px 10px;
+  display: flex;
+  justify-content: space-between;
+}

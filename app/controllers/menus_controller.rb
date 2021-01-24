@@ -26,7 +26,7 @@ class MenusController < ApplicationController
     id = params[:id]
     active = params[:active]
     menu = Menu.find(id)
-    menu.active = active == "true"
+    menu.active = active
     if not menu.save
       flash[:error] = menu.errors.full_messages.join(", ")
     end

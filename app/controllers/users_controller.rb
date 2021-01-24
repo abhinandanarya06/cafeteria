@@ -43,6 +43,7 @@ class UsersController < ApplicationController
   def destroy
     user_id = params[:id]
     User.find(user_id).destroy
+    Order.find_by(user_id: user_id).destroy
     redirect_to "/users"
   end
 end

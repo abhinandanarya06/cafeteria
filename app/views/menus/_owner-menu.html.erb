@@ -8,7 +8,7 @@
       <li class="smooth_border">
         <h3 class="pad">
           <div class="flex">
-            <%= form_with(url: "/menus/#{menu.id}", action: "patch") do |form| %>
+            <%= form_with(url: "/menus/#{menu.id}", method: "patch") do |form| %>
               <%= form.check_box :active ,
                                 onclick: "this.form.submit()",
                                 class: "checkbox_active",
