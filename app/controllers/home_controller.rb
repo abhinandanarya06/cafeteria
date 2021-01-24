@@ -3,6 +3,10 @@ class HomeController < ApplicationController
 
   def index
     current_user
-    render "index"
+    if @current_user
+      redirect_to "/menus"
+    else
+      render "index"
+    end
   end
 end
