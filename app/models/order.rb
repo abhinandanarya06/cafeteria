@@ -4,4 +4,12 @@ class Order < ActiveRecord::Base
 
   validates :date, presence: true
   validates :user_id, presence: true
+
+  def self.delivered(yes)
+    if yes
+      where("delivered_at <= ?", Date.today)
+    else
+      where(delivered_at: nil)
+    end
+  end
 end
