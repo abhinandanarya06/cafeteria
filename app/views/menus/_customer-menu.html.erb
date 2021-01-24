@@ -11,7 +11,7 @@
               <% if item.image.attached? %>
                 <%= image_tag item.image, class: "item_image" %>
               <% else %>
-                <img src="/assets/no_image.png" class="item_image">
+                <img src="<%= asset_path 'no_image.png' %>" class="item_image">
               <% end %>
               <div>
                 <p class="item_name"><%= "#{item.name}: " %></p>
