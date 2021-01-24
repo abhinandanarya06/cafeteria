@@ -8,6 +8,18 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+      body {
+        background: '<%= asset_path 'back.png' %>' fixed;
+        height: 100%;
+
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        font-family: sans-serif;
+      }
+    </style>
   </head>
 
   <body>

@@ -1,13 +1,3 @@
-body {
-  background: url("/assets/back.jpg") fixed;
-  height: 100%;
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  font-family: sans-serif;
-}
 .flex {
   display: flex;
 }
