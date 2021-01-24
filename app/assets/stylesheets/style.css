@@ -132,3 +132,16 @@ li:hover {
   display: flex;
   justify-content: space-between;
 }
+.item_image {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+.item_name {
+  padding-left: 10px;
+  font-weight: bold;
+}
+.item_des {
+  padding-left: 20px;
+}

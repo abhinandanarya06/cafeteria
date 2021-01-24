@@ -1,4 +1,5 @@
 class MenuItem < ActiveRecord::Base
+  has_one_attached :image
   belongs_to :menu
 
   validates :menu_id, presence: true

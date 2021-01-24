@@ -8,16 +8,23 @@
         <ul>
           <% menu.menu_items.each do |item| %>
             <li class="flex small_bot_pad">
-              <%= "#{item.name}: #{item.description} @ Rs #{item.price}" %>
-
-              <%= form_with url: "/carts", method: "post" do |form| %>
-                <%= form.text_field :user_id, value: @current_user.id, style: "display: none" %>
-                <%= form.text_field :menu_item_id, value: item.id, style: "display: none" %>
-                <%= form.text_field :menu_item_name, value: item.name, style: "display: none" %>
-                <%= form.text_field :price, value: item.price, style: "display: none" %>
-                <%= form.number_field :quantity, placeholder: "Quantity", class: "small_left_mar itemp_input" %>
-                <%= form.submit "Add to cart", class: "update_btn" %>
+              <% if item.image.attached? %>
+                <%= image_tag item.image, class: "item_image" %>
+              <% else %>
+                <img src="/assets/no_image.png" class="item_image">
               <% end %>
+              <div>
+                <p class="item_name"><%= "#{item.name}: " %></p>
+                <p class="item_des"><%= "#{item.description} @ Rs #{item.price}" %></p>
+                <%= form_with url: "/carts", method: "post" do |form| %>
+                  <%= form.text_field :user_id, value: @current_user.id, style: "display: none" %>
+                  <%= form.text_field :menu_item_id, value: item.id, style: "display: none" %>
+                  <%= form.text_field :menu_item_name, value: item.name, style: "display: none" %>
+                  <%= form.text_field :price, value: item.price, style: "display: none" %>
+                  <%= form.number_field :quantity, placeholder: "Quantity", class: "small_left_mar itemp_input" %>
+                  <%= form.submit "Add to cart", class: "update_btn" %>
+                <% end %>
+              </div>
             </li>
           <% end %>
         </ul>

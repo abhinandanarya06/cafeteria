@@ -41,7 +41,16 @@
         <ul class="pad">
           <% menu.menu_items.each do |item| %>
             <li class="flex small_bot_pad">
+              <% if item.image.attached? %>
+                <%= image_tag item.image, class: "item_image" %>
+              <% else %>
+                <img src="/assets/no_image.png" class="item_image">
+              <% end %>
+
               <%= form_with url: "/menu_items/#{item.id}", method: "patch" do |form| %>
+                <br/>
+                <%= form.file_field :image %>
+                <br/><br/>
                 <%= form.text_field :name, value: item.name, class: "item_input" %> :
                 <%= form.text_field :description, value: item.description, class: "itemd_input" %> @
                 <%= form.number_field :price, value: item.price, class: "itemp_input" %>
