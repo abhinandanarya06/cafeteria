@@ -12,6 +12,8 @@ You can create menus, update menu items, see reports,...
 
 [http://cafeteria-by-abhinandan.herokuapp.com](http://cafeteria-by-abhinandan.herokuapp.com/)
 
+Note : No user account is created in deployed website. Hence create it yourself and test it.
+
 ---
 
 <img src=".gitassets/1.png">
@@ -54,3 +56,76 @@ You can create menus, update menu items, see reports,...
   - can add items to their cart
   - can edit items quantity or delete items from cart
   - can place order based on items on cart
+
+# Database Model
+
+- `users`
+
+  - `name`
+  - `role`
+  - `email`
+  - `password` (password_digest)
+  - `created_at`
+  - `updated_at`
+
+- `carts`
+
+  - `user_id`
+  - `menu_item_id`
+  - `menu_item_name`
+  - `menu_item_price`
+  - `quantity`
+
+- `orders`
+
+  - `date`
+  - `user_id`
+  - `delivered_at`
+  - `created_at`
+  - `updated_at`
+
+- `order_items`
+
+  - `order_id`
+  - `menu_item_id`
+  - `menu_item_name`
+  - `menu_item_price`
+
+- `menus`
+
+  - `name`
+  - `active`
+
+- `menu_items`
+
+  - `menu_id`
+  - `name`
+  - `description`
+  - `price`
+
+- `active_storage` (for item image storage)
+  - `image` belongs to `menu_items`
+
+# Routes Defined
+
+### Accessible publically
+
+- `/` : Home Page
+- `/signin` : Sign In Page
+- `/users/new` : Sign Up Page
+
+### Accessible to customer
+
+- `/carts` : Cart Page
+- `/menus` : Menu Page
+- `/orders` : Order List Page
+
+### Accessible to owner (admin)
+
+- `/menus` : Editable Menu Page
+- `/users` : Manage Users page
+- `/reports` : Sales report Page
+
+### Accessible to billing clerk
+
+- `/reports` : Pending Orders Page
