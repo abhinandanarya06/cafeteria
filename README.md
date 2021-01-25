@@ -29,6 +29,21 @@ You can create menus, update menu items, see reports,...
 
 ---
 
-# User Guide Video
-
 # Features
+
+1. **Owner**
+
+- can create menu, add menu items to menus, update menu, add item images, etc
+- can create users of customer, billing clerk and owner as well
+- can see sales report
+
+2. **Billing Clerk**
+
+- can see pending orders and mark them delivered based on date only (time feature will be added)
+
+3. **Customer**
+
+- can see menus and corresponding menu items
+- can add items to their cart
+- can edit items quantity or delete items from cart
+- can place order based on items on cart
