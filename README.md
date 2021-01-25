@@ -1,6 +1,6 @@
 # Cafeteria Management System
 
-<img src="https://img.shields.io/badge/Ruby-on%20Rails-red"> <img src="https://img.shields.io/badge/PupilFirst-Training-green"> <img src="https://img.shields.io/badge/cafeteria-project-yellow">
+<a href="https://rubyonrails.org/"><img src="https://img.shields.io/badge/Ruby-on%20Rails-red"></a> <a href="https://www.pupilfirst.school/"><img src="https://img.shields.io/badge/PupilFirst-Training-green"></a> <a href="http://cafeteria-by-abhinandan.herokuapp.com/"><img src="https://img.shields.io/badge/cafeteria-project-yellow"></a>
 
 ---
 
