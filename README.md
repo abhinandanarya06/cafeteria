@@ -31,23 +31,23 @@ You can create menus, update menu items, see reports,...
 
 # User Guide
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/3KHgxM-YLGI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![Youtube Demo](https://img.youtube.com/vi/3KHgxM-YLGI/0.jpg)](https://www.youtube.com/watch?v=3KHgxM-YLGI)
 
 # Features
 
-1. **Owner**
+- **Owner**
 
-- can create menu, add menu items to menus, update menu, add item images, etc
-- can create users of customer, billing clerk and owner as well
-- can see sales report
+  - can create menu, add menu items to menus, update menu, add item images, etc
+  - can create users of customer, billing clerk and owner as well
+  - can see sales report
 
-2. **Billing Clerk**
+- **Billing Clerk**
 
-- can see pending orders and mark them delivered based on date only (time feature will be added)
+  - can see pending orders and mark them delivered based on date only (time feature will be added)
 
-3. **Customer**
+- **Customer**
 
-- can see menus and corresponding menu items
-- can add items to their cart
-- can edit items quantity or delete items from cart
-- can place order based on items on cart
+  - can see menus and corresponding menu items
+  - can add items to their cart
+  - can edit items quantity or delete items from cart
+  - can place order based on items on cart
