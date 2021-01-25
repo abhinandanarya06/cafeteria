@@ -2,11 +2,7 @@
   <h1> Welcome new user ! </h1>
 
   <%= form_with url: users_path do |form| %>
-    <div>
-      Role :
-      <%= form.select :role, ["Customer", "Billing Clerk", "Owner"] %>
-    </div>
-    <br/>
+    <%= form.hidden_field :role, value: "Customer" %>
     <div>
       Name  :<br/>
       <%= form.text_field :name, class: "credential" %>

@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     if @current_user.role == "Owner"
       render "users/index"
     else
-      render plain: "You are not owner"
+      render plain: "You are not allowed"
     end
   end
 
@@ -18,6 +18,9 @@ class UsersController < ApplicationController
     current_user
     name = params[:name]
     role = params[:role]
+    if role != "Customer" and @current_user.role != "Owner"
+      render plain: "You are not allowed"
+    end
     email = params[:email]
     password = params[:password]
     new_user = User.new(
