@@ -5,7 +5,7 @@
   <% end %>
   <ul class="disable_list">
     <% Menu.all.each do |menu| %>
-      <li class="smooth_border">
+      <li class="smooth_border ilist">
         <h3 class="pad flex">
             <%= form_with(url: "/menus/#{menu.id}", method: "patch") do |form| %>
               <%= form.check_box :active ,
@@ -23,7 +23,7 @@
                           class: "trashcan" %>
             <% end %>
         </h3>
-        <div class="hide">
+        <div>
           <%= form_with url: menu_items_path, class: "pad" do |form| %>
             <%= form.hidden_field :menu_id, value: menu.id %>
             <%= form.text_field :name, placeholder: "Item Name", class: "add_iname" %>

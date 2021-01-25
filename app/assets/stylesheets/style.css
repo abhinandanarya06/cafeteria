@@ -16,9 +16,6 @@
 .hide {
   display: none;
 }
-li:hover > div {
-  display: block;
-}
 li:hover {
   background-color: rgb(255, 211, 248);
 }
