@@ -29,6 +29,10 @@ You can create menus, update menu items, see reports,...
 
 ---
 
+# User Guide
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3KHgxM-YLGI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 # Features
 
 1. **Owner**
