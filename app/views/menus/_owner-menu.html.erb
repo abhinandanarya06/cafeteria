@@ -46,7 +46,7 @@
 
                 <%= form_with url: "/menu_items/#{item.id}", method: "patch" do |form| %>
                   <br/>
-                  <%= form.file_field :image %>
+                  <%= form.file_field :image, onchange: "this.form.submit()" %>
                   <br/><br/>
                   <%= form.text_field :name, value: item.name, class: "item_input" %> :
                   <%= form.text_field :description, value: item.description, class: "itemd_input" %> @
