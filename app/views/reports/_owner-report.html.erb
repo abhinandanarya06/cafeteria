@@ -8,7 +8,7 @@
     %>
   </h2>
     <% Order.delivered(true).each do |order| %>
-      <li>
+      <li class="ilist">
         <% if @current_user.role == "Billing Clerk" %>
           <% if order.delivered_at.nil? %>
             <%= form_with(url: "/orders/#{order.id}", method: "patch") do |form| %>
@@ -21,14 +21,14 @@
         <% end %>
         <h3><%= "Ordered on #{order.date.to_s(:long)} by #{User.find(order.user_id).name}" %></h3>
         <h3><%= "Delivered on #{order.delivered_at.to_s(:long)} " if not order.delivered_at.nil? %></h3>
-        <div class="hide">
-        <ul class="pad">
-          <% order.order_items.each do |item| %>
-            <li class="flex small_bot_pad">
-              <%= "#{item.menu_item_name} @ Rs #{item.menu_item_price}" %>
-            </li>
-          <% end %>
-        </ul>
+        <div>
+          <ul class="pad">
+            <% order.order_items.each do |item| %>
+              <li class="flex small_bot_pad">
+                <%= "#{item.menu_item_name} @ Rs #{item.menu_item_price}" %>
+              </li>
+            <% end %>
+          </ul>
         </div>
         <hr/>
       </li>
