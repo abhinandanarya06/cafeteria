@@ -142,3 +142,8 @@ li:hover {
 .item_des {
   padding-left: 20px;
 }
+.btn {
+  width: 100px;
+  height: 40px;
+  padding: 10px 10px 10px 10px;
+}

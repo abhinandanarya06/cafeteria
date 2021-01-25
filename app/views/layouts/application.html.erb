@@ -44,7 +44,16 @@
           <h4> <%= link_to "Sign out!", destroy_session_path, method: "delete" %> </h6>
         </div>
       <% else %>
-        <h1> Please <a href="/signin">signin</a> or <a href="/users/new">signup</a> here</h1>
+        <h2 align="center">
+            <input type="button"
+                  value="Sign In !"
+                  class="btn_createm btn"
+                  onclick="location.href = '/signin';">
+            <input type="button"
+                  value="Sign Up"
+                  class="update_btn btn"
+                  onclick="location.href = '/users/new';">
+        </h2>
       <% end %>
 
       <% if flash[:error] %>
