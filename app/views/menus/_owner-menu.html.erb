@@ -23,7 +23,7 @@
                           class: "trashcan" %>
             <% end %>
         </h3>
-        <div class="control">
+        <div class="control hide">
           <%= form_with url: menu_items_path, class: "pad" do |form| %>
             <%= form.hidden_field :menu_id, value: menu.id %>
             <%= form.text_field :name, placeholder: "Item Name", class: "add_iname" %>

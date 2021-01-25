@@ -57,9 +57,12 @@
       callback = function() {
         div = this.getElementsByClassName("control")[0]
         div.style.display = ""
+        div.className = "control"
         for (let i=0; i<menus.length; i++) {
           if (this != menus[i]) {
-            menus[i].getElementsByClassName("control")[0].style.display = "none"
+            let e = menus[i].getElementsByClassName("control")[0]
+            e.style.display = "none"
+            e.className = "control hide"
           }
         }
       }

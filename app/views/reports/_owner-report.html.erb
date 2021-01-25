@@ -19,7 +19,7 @@
         <% end %>
         <h3><%= "Ordered on #{order.date.to_s(:long)} by #{User.find(order.user_id).name}" %></h3>
         <h3><%= "Delivered on #{order.delivered_at.to_s(:long)} " if not order.delivered_at.nil? %></h3>
-        <div class="control">
+        <div class="control hide">
           <ul class="pad">
             <% order.order_items.each do |item| %>
               <li class="flex small_bot_pad">

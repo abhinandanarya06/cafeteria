@@ -1,6 +1,6 @@
 <ul>
     <% Order.delivered(false).each do |order| %>
-      <li>
+      <li class="ilist">
         <% if @current_user.role == "Billing Clerk" and order.delivered_at.nil? %>
             <%= form_with(url: "/orders/#{order.id}", method: "patch") do |form| %>
                   <%= form.date_field :date, value: Date.today %>
@@ -16,7 +16,7 @@
           <%= "Delivered on #{order.delivered_at.to_s(:long)} " if not order.delivered_at.nil? %>
         </h3>
 
-        <ul>
+        <ul class="control hide">
           <% order.order_items.each do |item| %>
             <li> <%= "#{item.menu_item_name} @ Rs #{item.menu_item_price}" %> </li>
           <% end %>
