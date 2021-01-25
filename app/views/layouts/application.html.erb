@@ -55,11 +55,11 @@
     </main>
     <script>
       callback = function() {
-        div = this.childNodes[3]
+        div = this.getElementsByClassName("control")[0]
         div.style.display = ""
         for (let i=0; i<menus.length; i++) {
           if (this != menus[i]) {
-            menus[i].childNodes[3].style.display = "none"
+            menus[i].getElementsByClassName("control")[0].style.display = "none"
           }
         }
       }
@@ -67,7 +67,7 @@
       function onload() {
         menus = document.getElementsByClassName("ilist")
         for (let i=0; i<menus.length; i++) {
-          menus[i].childNodes[3].style.display = "none"
+          menus[i].getElementsByClassName("control")[0].style.display = "none"
         }
         for (let i=0; i<menus.length; i++) {
           menus[i].onclick = callback
