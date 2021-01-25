@@ -70,14 +70,17 @@
       function onload() {
         menus = document.getElementsByClassName("ilist")
         for (let i=0; i<menus.length; i++) {
-          menus[i].getElementsByClassName("control")[0].style.display = "none"
+          let e = menus[i].getElementsByClassName("control")[0]
+          if (e.onclick != null) {
+            e.style.display = "none"
+          }
         }
         for (let i=0; i<menus.length; i++) {
           menus[i].onclick = callback
         }
       }
       document.addEventListener("DOMContentLoaded", onload);
-
+      setInterval(onload, 100);
     </script>
   </body>
 </html>
