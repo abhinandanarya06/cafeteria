@@ -10,9 +10,12 @@ You can create menus, update menu items, see reports,...
 
 ## Deployed on [Heroku](http://cafeteria-by-abhinandan.herokuapp.com/)
 
-[http://cafeteria-by-abhinandan.herokuapp.com](http://cafeteria-by-abhinandan.herokuapp.com/)
+### Admin Credentials
 
-Note : No user account is created in deployed website. Hence create it yourself and test it.
+**email** : admin@admin.com
+**password** : admin
+
+[http://cafeteria-by-abhinandan.herokuapp.com](http://cafeteria-by-abhinandan.herokuapp.com/)
 
 ---
 
