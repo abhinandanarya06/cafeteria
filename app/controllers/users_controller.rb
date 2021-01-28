@@ -20,6 +20,7 @@ class UsersController < ApplicationController
     role = params[:role]
     if role != "Customer" and @current_user.role != "Owner"
       render plain: "You are not allowed"
+      return
     end
     email = params[:email]
     password = params[:password]
