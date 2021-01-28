@@ -9,7 +9,7 @@
   </h2>
     <% Order.delivered(true).each do |order| %>
       <% user = order.user %>
-      <% if not user.nil? do %>
+      <% if not user.nil? %>
         <li class="smooth_border ilist">
           <% if @current_user.role == "Billing Clerk" and order.delivered_at.nil? %>
             <%= form_with(url: "/orders/#{order.id}", method: "patch") do |form| %>
@@ -19,8 +19,8 @@
                                     class: "checkbox_active" %>
             <% end %>
           <% end %>
-          <h3><%= "Ordered on #{order.date.to_s(:long)} by #{user.name}" %></h3>
-          <h3><%= "Delivered on #{order.delivered_at.to_s(:long)} " if not order.delivered_at.nil? %></h3>
+          <h3><%= "Ordered on #{order.date.to_s(:short)} by #{user.name}" %></h3>
+          <h3><%= "Delivered on #{order.delivered_at.to_s(:short)} " if not order.delivered_at.nil? %></h3>
           <div class="control hide">
             <ul class="pad">
               <% order.order_items.each do |item| %>

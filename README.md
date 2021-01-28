@@ -52,7 +52,7 @@ You can create menus, update menu items, see reports,...
 
 - **Billing Clerk**
 
-  - can see pending orders and mark them delivered based on date only (time feature will be added)
+  - can see pending orders and mark them delivered based on datetime
 
 - **Customer**
 
