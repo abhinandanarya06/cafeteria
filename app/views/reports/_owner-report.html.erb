@@ -7,7 +7,7 @@
       }.sum
     %>
   </h2>
-    <% Order.delivered(true).each do |order| %>
+    <% Order.delivered(true).order(delivered_at: :desc).each do |order| %>
       <% user = order.user %>
       <% if not user.nil? %>
         <li class="smooth_border ilist">

@@ -1,7 +1,7 @@
 <section>
   <h2> Orders </h2>
   <ul>
-    <% @current_user.orders.each do |order| %>
+    <% @current_user.orders.order(delivered_at: :desc).each do |order| %>
       <li>
         <%= @current_user.name %> <b>ordered on</b> <%= order.date.to_s(:long) %>
         <% if not order.delivered_at.nil? %>
