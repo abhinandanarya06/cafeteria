@@ -5,7 +5,7 @@
         <li class="ilist">
           <% if @current_user.role == "Billing Clerk" and order.delivered_at.nil? %>
               <%= form_with(url: "/orders/#{order.id}", method: "patch") do |form| %>
-                    <%= form.datetime_field :date, max: DateTime.now, min: order.date %>
+                    <%= form.datetime_field :datetime, max: DateTime.now, min: order.date %>
                     <%= form.check_box :active ,
                                       onclick: "this.form.submit()",
                                       class: "checkbox_active" %>

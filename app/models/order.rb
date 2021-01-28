@@ -7,7 +7,7 @@ class Order < ActiveRecord::Base
 
   def self.delivered(yes)
     if yes
-      where("delivered_at <= ?", Date.today)
+      where("delivered_at <= ?", DateTime.now + 1)
     else
       where(delivered_at: nil)
     end

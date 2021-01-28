@@ -3,9 +3,9 @@
   <ul>
     <% @current_user.orders.each do |order| %>
       <li>
-        <%= @current_user.name %> ordered on <%= order.date.to_s(:long) %>
+        <%= @current_user.name %> <b>ordered on</b> <%= order.date.to_s(:long) %>
         <% if not order.delivered_at.nil? %>
-          delivered on <%= order.delivered_at.to_s(:long) %>
+          <b>delivered on</b> <%= order.delivered_at.to_s(:long) %>
         <% end %>
         <ul>
           <% order.order_items.each do |item| %>
@@ -13,6 +13,7 @@
           <% end %>
         </ul>
       </li>
+      <br/>
     <% end %>
   </ul>
 </section>

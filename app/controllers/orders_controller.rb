@@ -30,9 +30,9 @@ class OrdersController < ApplicationController
 
   def update
     id = params[:id]
-    date = DateTime.parse(params[:date])
+    datetime = DateTime.parse(params[:datetime])
     order = Order.find(id)
-    order.delivered_at = date
+    order.delivered_at = datetime.to_s(:short)
     if not order.save
       flash[:error] = order.errors.full_messages.join(", ")
     end
