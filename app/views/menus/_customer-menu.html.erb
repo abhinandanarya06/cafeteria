@@ -24,7 +24,7 @@
                         class: "small_left_mar itemp_input"
                   %>
                   <% item = Cart.item_for(item.id, current_user.id) %>
-                  <%= form.submit "Add to cart(#{(item.nil?) ? 0 : item.quantity})", class: "update_btn w-120" %>
+                  <%= form.submit "Add to cart(#{item.nil? ? 0 : item.quantity})", class: "update_btn w-120" %>
                 <% end %>
               </div>
             </li>

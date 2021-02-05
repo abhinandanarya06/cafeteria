@@ -12,9 +12,9 @@ You can create menus, update menu items, see reports,...
 
 ### Admin Credentials
 
-**email** : admin@admin.com
-
-**password** : admin
+| **email**    | admin@admin.com |
+| ------------ | --------------- |
+| **password** | admin           |
 
 [http://cafeteria-by-abhinandan.herokuapp.com](http://cafeteria-by-abhinandan.herokuapp.com/)
 
