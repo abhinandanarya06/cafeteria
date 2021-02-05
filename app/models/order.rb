@@ -12,4 +12,14 @@ class Order < ActiveRecord::Base
       where(delivered_at: nil)
     end
   end
+
+  def self.create_from_cart(user_id)
+    new_order = Order.create(
+      date: Date.today,
+      user_id: user_id,
+    )
+    user_cart = Cart.where(user_id: user_id)
+    OrderItem.create_from_(user_cart, new_order)
+    new_order
+  end
 end
