@@ -2,7 +2,6 @@ class MenusController < ApplicationController
   before_action :ensure_owner, only: [:create, :update, :destroy]
 
   def index
-    current_user
     render "index"
   end
 
@@ -29,7 +28,6 @@ class MenusController < ApplicationController
   end
 
   def destroy
-    ensure_owner
     id = params[:id]
     MenuItem.where(menu_id: id).delete_all
     menu = Menu.find(id).destroy
