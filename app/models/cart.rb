@@ -9,6 +9,6 @@ class Cart < ActiveRecord::Base
   validates :quantity, presence: true
 
   def self.count_for(item, user)
-    Cart.all.where("menu_item_id = ? and user_id = ?", item.id, user.id).count
+    Cart.all.where("menu_item_id = ? and user_id = ?", item.id, user.id).map { |rec| rec.quantity }.sum
   end
 end

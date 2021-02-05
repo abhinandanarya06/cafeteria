@@ -19,8 +19,6 @@
                 <%= form_with url: "/carts", method: "post" do |form| %>
                   <%= form.hidden_field :user_id, value: current_user.id %>
                   <%= form.hidden_field :menu_item_id, value: item.id %>
-                  <%= form.hidden_field :menu_item_name, value: item.name %>
-                  <%= form.hidden_field :price, value: item.price %>
                   <%= form.number_field :quantity,
                         placeholder: "Quantity",
                         class: "small_left_mar itemp_input"

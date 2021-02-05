@@ -9,14 +9,13 @@ class CartsController < ApplicationController
   def create
     user_id = params[:user_id]
     menu_item_id = params[:menu_item_id]
-    menu_item_name = params[:menu_item_name]
-    price = params[:price]
+    item = MenuItem.find_by_id(menu_item_id)
     quantity = params[:quantity]
     new_item = Cart.new(
       user_id: user_id,
       menu_item_id: menu_item_id,
-      menu_item_name: menu_item_name,
-      menu_item_price: price,
+      menu_item_name: item.name,
+      menu_item_price: item.price,
       quantity: quantity,
     )
     if !new_item.save
