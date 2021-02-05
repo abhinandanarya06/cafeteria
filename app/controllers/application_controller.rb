@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   def ensure_owner
     unless current_user.role == "Owner"
       redirect_to "/"
+      return current_user.role == "Owner"
     end
   end
 

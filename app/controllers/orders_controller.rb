@@ -1,16 +1,12 @@
 class OrdersController < ApplicationController
-  def new
-    render "orders/new"
-  end
-
   def create
-    user_id = @current_user.id
+    user_id = current_user.id
     new_order = Order.create(
       date: Date.today,
       user_id: user_id,
     )
     Cart.where(user_id: user_id).each { |item|
-      if not MenuItem.where(id: item.menu_item_id).empty?
+      if !MenuItem.where(id: item.menu_item_id).empty?
         OrderItem.create!(
           order_id: new_order.id,
           menu_item_id: item.menu_item_id,

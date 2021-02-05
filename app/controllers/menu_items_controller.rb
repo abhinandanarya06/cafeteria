@@ -1,10 +1,6 @@
 class MenuItemsController < ApplicationController
   before_action :ensure_owner
 
-  def new
-    render "menu_items/new"
-  end
-
   def create
     menu_id = params[:menu_id]
     name = params[:name]

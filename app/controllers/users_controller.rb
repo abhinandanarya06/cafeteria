@@ -3,7 +3,9 @@ class UsersController < ApplicationController
   before_action :current_user
 
   def index
-    ensure_owner
+    if !ensure_owner
+      return
+    end
     render "users/index"
   end
 
@@ -14,8 +16,7 @@ class UsersController < ApplicationController
   def create
     name = params[:name]
     role = params[:role]
-    if role != "Customer" && @current_user.role != "Owner"
-      render plain: "You are not allowed"
+    if role != "Customer" && !ensure_owner
       return
     end
     email = params[:email]
@@ -27,7 +28,7 @@ class UsersController < ApplicationController
       password: password,
     )
     if new_user.save
-      if current_user && @current_user.role == "Owner"
+      if current_user && ensure_owner
         redirect_to "/users"
       else
         session[:current_user_id] = new_user.id

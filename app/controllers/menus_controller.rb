@@ -4,13 +4,10 @@ class MenusController < ApplicationController
     render "index"
   end
 
-  def new
-    ensure_owner
-    render "menus/new"
-  end
-
   def create
-    ensure_owner
+    if !ensure_owner
+      return
+    end
     name = params[:name]
     new_menu = Menu.new(name: name, active: false)
     if new_menu.save

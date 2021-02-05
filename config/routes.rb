@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   resources "users"
   resources "orders"
   resources "menus"
-  resources "order_items"
   resources "menu_items"
   resources "carts"
 
