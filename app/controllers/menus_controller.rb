@@ -1,13 +1,12 @@
 class MenusController < ApplicationController
+  before_action :ensure_owner, only: [:create, :update, :destroy]
+
   def index
     current_user
     render "index"
   end
 
   def create
-    if !ensure_owner
-      return
-    end
     name = params[:name]
     new_menu = Menu.new(name: name, active: false)
     if new_menu.save

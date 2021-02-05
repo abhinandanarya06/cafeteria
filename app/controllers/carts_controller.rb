@@ -3,7 +3,6 @@ class CartsController < ApplicationController
   before_action :ensure_customer
 
   def index
-    current_user
     render "index"
   end
 

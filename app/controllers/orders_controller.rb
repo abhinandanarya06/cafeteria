@@ -1,4 +1,7 @@
 class OrdersController < ApplicationController
+  before_action :ensure_customer, only: [:create]
+  before_action :ensure_owner_or_clerk, only: [:update]
+
   def create
     user_id = current_user.id
     new_order = Order.create(
