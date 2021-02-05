@@ -26,21 +26,21 @@
     <main class="center">
       <h1 align="center"> A Cafeteria Company </h1>
 
-      <% if @current_user %>
+      <% if current_user %>
 
-        <% if @current_user.role == "Owner" %>
+        <% if is_owner? %>
           <%= render partial: "owner-home-menu" %>
-        <% elsif @current_user.role == "Billing Clerk" %>
+        <% elsif is_clerk? %>
           <%= render partial: "clerk-home-menu" %>
-        <% elsif @current_user.role == "Customer" %>
+        <% elsif is_customer? %>
           <%= render partial: "customer-home-menu" %>
         <% end %>
 
       <% end %>
 
-      <% if @current_user %>
+      <% if current_user %>
         <div class="flex welcome_user">
-          <h1> Hi <%= @current_user.name %> ! </h1>
+          <h1> Hi <%= current_user.name %> ! </h1>
           <h4> <%= link_to "Sign out!", destroy_session_path, method: "delete" %> </h6>
         </div>
       <% else %>

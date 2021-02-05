@@ -1,8 +1,8 @@
 <section>
   <h2> Orders </h2>
-  <% if @current_user.role == "Owner" %>
+  <% if is_owner? %>
     <%= render partial: "owner-report" %>
-  <% elsif @current_user.role == "Billing Clerk" %>
+  <% elsif is_clerk? %>
     <%= render partial: "clerk-porders" %>
   <% end %>
 </section>

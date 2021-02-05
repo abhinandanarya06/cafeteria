@@ -1,8 +1,8 @@
 <section>
   <h2> Menus </h2>
-  <% if @current_user.role == "Owner" %>
+  <% if is_owner? %>
     <%= render partial: "owner-menu" %>
-  <% elsif @current_user.role == "Customer" %>
+  <% elsif is_customer? %>
     <%= render partial: "customer-menu" %>
   <% end %>
 </section>
