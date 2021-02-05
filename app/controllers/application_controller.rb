@@ -8,13 +8,19 @@ class ApplicationController < ActionController::Base
   end
 
   def ensure_owner
-    unless @current_user.role == "Owner"
+    unless current_user.role == "Owner"
       redirect_to "/"
     end
   end
 
   def ensure_owner_or_clerk
-    unless @current_user.role == "Owner" or @current_user.role == "Billing Clerk"
+    unless current_user.role == "Owner" || current_user.role == "Billing Clerk"
+      redirect_to "/"
+    end
+  end
+
+  def ensure_customer
+    unless current_user.role == "Customer"
       redirect_to "/"
     end
   end

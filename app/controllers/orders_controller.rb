@@ -33,7 +33,7 @@ class OrdersController < ApplicationController
     datetime = DateTime.parse(params[:datetime])
     order = Order.find(id)
     order.delivered_at = datetime.to_s(:short)
-    if not order.save
+    if !order.save
       flash[:error] = order.errors.full_messages.join(", ")
     end
     redirect_to "/reports"

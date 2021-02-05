@@ -1,13 +1,10 @@
 class UsersController < ApplicationController
   skip_before_action :ensure_user_logged_in
+  before_action :current_user
 
   def index
-    @current_user = current_user
-    if @current_user.role == "Owner"
-      render "users/index"
-    else
-      render plain: "You are not allowed"
-    end
+    ensure_owner
+    render "users/index"
   end
 
   def new
@@ -15,10 +12,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    current_user
     name = params[:name]
     role = params[:role]
-    if role != "Customer" and @current_user.role != "Owner"
+    if role != "Customer" && @current_user.role != "Owner"
       render plain: "You are not allowed"
       return
     end
@@ -31,7 +27,7 @@ class UsersController < ApplicationController
       password: password,
     )
     if new_user.save
-      if @current_user and @current_user.role == "Owner"
+      if current_user && @current_user.role == "Owner"
         redirect_to "/users"
       else
         session[:current_user_id] = new_user.id

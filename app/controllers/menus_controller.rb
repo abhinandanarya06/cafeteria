@@ -5,7 +5,6 @@ class MenusController < ApplicationController
   end
 
   def new
-    current_user
     ensure_owner
     render "menus/new"
   end

@@ -16,12 +16,10 @@ class MenuItemsController < ApplicationController
       description: description,
       price: price,
     )
-    if new_menu_item.save
-      redirect_to "/menus"
-    else
+    if !new_menu_item.save
       flash[:error] = new_menu_item.errors.full_messages.join(", ")
-      redirect_to "/menus"
     end
+    redirect_to "/menus"
   end
 
   def update
@@ -31,7 +29,7 @@ class MenuItemsController < ApplicationController
     item.description = params[:description]
     item.price = params[:price].to_f
     item.image = params[:image]
-    if not item.save
+    if !item.save
       flash[:error] = item.errors.full_messages
     end
     redirect_to "/menus"

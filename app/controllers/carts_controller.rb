@@ -1,5 +1,6 @@
 class CartsController < ApplicationController
   skip_before_action :ensure_user_logged_in
+  before_action :ensure_customer
 
   def index
     current_user
@@ -19,7 +20,7 @@ class CartsController < ApplicationController
       menu_item_price: price,
       quantity: quantity,
     )
-    if not new_item.save
+    if !new_item.save
       flash[:error] = new_item.errors.full_messages
     end
     redirect_to "/menus"
@@ -30,7 +31,7 @@ class CartsController < ApplicationController
     id = params[:id]
     cart_item = Cart.find(id)
     cart_item.quantity = quantity
-    if not cart_item.save
+    if !cart_item.save
       flash[:error] = cart_item.errors.full_messages
     end
     redirect_to "/carts"
