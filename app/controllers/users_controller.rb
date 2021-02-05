@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   def create
     name = params[:name]
     role = params[:role]
-    if role != "Customer" && !ensure_owner
+    if role != "Customer" && !is_owner?
       return
     end
     email = params[:email]
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
       password: password,
     )
     if new_user.save
-      if current_user && ensure_owner
+      if current_user && is_owner?
         redirect_to "/users"
       else
         session[:current_user_id] = new_user.id

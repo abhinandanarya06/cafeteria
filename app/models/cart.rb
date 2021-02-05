@@ -20,7 +20,8 @@ class Cart < ActiveRecord::Base
     cart_item = Cart.item_for(menu_item_id, user_id)
     if cart_item
       cart_item.quantity += quantity.to_i
-      return cart_item.save
+      cart_item.save
+      return cart_item
     else
       menu_item = MenuItem.find_by_id(menu_item_id)
       return Cart.create(

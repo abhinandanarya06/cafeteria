@@ -4,15 +4,15 @@ class ApplicationController < ActionController::Base
   helper_method :is_owner?, :is_customer?, :is_clerk?, :current_user
 
   def is_owner?
-    current_user.role == "Owner"
+    current_user && current_user.role == "Owner"
   end
 
   def is_clerk?
-    current_user.role == "Billing Clerk"
+    current_user && current_user.role == "Billing Clerk"
   end
 
   def is_customer?
-    current_user.role == "Customer"
+    current_user && current_user.role == "Customer"
   end
 
   def ensure_user_logged_in
@@ -22,23 +22,22 @@ class ApplicationController < ActionController::Base
   end
 
   def ensure_owner
-    yes = current_user && is_owner?
-    unless yes
+    unless current_user && is_owner?
+      flash[:error] = "Access Denied!. You are not owner"
       redirect_to "/"
-      return yes
     end
   end
 
   def ensure_owner_or_clerk
-    yes = current_user && (is_owner? || is_clerk?)
-    unless yes
+    unless is_owner? || is_clerk?
+      flash[:error] = "Access Denied!. You are not owner or clerk"
       redirect_to "/"
-      return yes
     end
   end
 
   def ensure_customer
     unless is_customer?
+      flash[:error] = "Access Denied!. You are not customer"
       redirect_to "/"
     end
   end

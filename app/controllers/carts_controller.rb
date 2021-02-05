@@ -16,7 +16,7 @@ class CartsController < ApplicationController
       quantity: quantity,
     )
     if !success
-      flash[:error] = new_item.errors.full_messages
+      flash[:error] = success.errors.full_messages
     end
     redirect_to "/menus"
   end
