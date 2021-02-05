@@ -147,3 +147,12 @@ li:hover {
   height: 40px;
   padding: 10px 10px 10px 10px;
 }
+.message {
+  max-width: 600px;
+  border-radius: 5px;
+  margin: 8px auto;
+  padding: 10px 10px 10px 10px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  background-color: rgb(85, 255, 51);
+  font-size: 20px;
+}

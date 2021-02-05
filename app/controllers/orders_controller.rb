@@ -29,11 +29,17 @@ class OrdersController < ApplicationController
 
   def update
     id = params[:id]
-    datetime = DateTime.parse(params[:datetime])
+    begin
+      datetime = DateTime.parse(params[:datetime])
+    rescue
+      datetime = DateTime.now()
+    end
     order = Order.find(id)
     order.delivered_at = datetime.to_s(:short)
     if !order.save
       flash[:error] = order.errors.full_messages.join(", ")
+    else
+      flash[:message] = "Marked the order as delivered on #{datetime.to_s(:short)}"
     end
     redirect_to "/reports"
   end
