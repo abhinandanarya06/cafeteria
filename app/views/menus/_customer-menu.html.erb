@@ -23,7 +23,8 @@
                         placeholder: "Quantity",
                         class: "small_left_mar itemp_input"
                   %>
-                  <%= form.submit "Add to cart(#{Cart.count_for(item, current_user)})", class: "update_btn w-120" %>
+                  <% item = Cart.item_for(item.id, current_user.id) %>
+                  <%= form.submit "Add to cart(#{(item.nil?) ? 0 : item.quantity})", class: "update_btn w-120" %>
                 <% end %>
               </div>
             </li>

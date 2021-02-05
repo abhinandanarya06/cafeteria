@@ -8,7 +8,28 @@ class Cart < ActiveRecord::Base
   validates :menu_item_price, presence: true
   validates :quantity, presence: true
 
-  def self.count_for(item, user)
-    Cart.all.where("menu_item_id = ? and user_id = ?", item.id, user.id).map { |rec| rec.quantity }.sum
+  def self.item_for(item_id, user_id)
+    Cart.all.where("menu_item_id = ? and user_id = ?", item_id, user_id)[0]
+  end
+
+  def self.addItem(params)
+    user_id = params[:user_id]
+    menu_item_id = params[:menu_item_id]
+    quantity = params[:quantity]
+
+    cart_item = Cart.item_for(menu_item_id, user_id)
+    if cart_item
+      cart_item.quantity += quantity.to_i
+      return cart_item.save
+    else
+      menu_item = MenuItem.find_by_id(menu_item_id)
+      return Cart.create(
+               user_id: user_id,
+               menu_item_id: menu_item_id,
+               menu_item_name: menu_item.name,
+               menu_item_price: menu_item.price,
+               quantity: quantity,
+             )
+    end
   end
 end

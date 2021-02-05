@@ -9,16 +9,13 @@ class CartsController < ApplicationController
   def create
     user_id = params[:user_id]
     menu_item_id = params[:menu_item_id]
-    item = MenuItem.find_by_id(menu_item_id)
     quantity = params[:quantity]
-    new_item = Cart.new(
+    success = Cart.addItem(
       user_id: user_id,
       menu_item_id: menu_item_id,
-      menu_item_name: item.name,
-      menu_item_price: item.price,
       quantity: quantity,
     )
-    if !new_item.save
+    if !success
       flash[:error] = new_item.errors.full_messages
     end
     redirect_to "/menus"
