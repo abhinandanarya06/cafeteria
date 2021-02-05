@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :current_user
   before_action :ensure_user_logged_in
+  helper_method :is_owner?, :is_customer?, :is_clerk?, :current_user
 
   def is_owner?
     current_user.role == "Owner"
