@@ -29,11 +29,11 @@
       <% if current_user %>
 
         <% if is_owner? %>
-          <%= render partial: "owner-home-menu" %>
+          <%= render partial: "navbar-owner" %>
         <% elsif is_clerk? %>
-          <%= render partial: "clerk-home-menu" %>
+          <%= render partial: "navbar-clerk" %>
         <% elsif is_customer? %>
-          <%= render partial: "customer-home-menu" %>
+          <%= render partial: "navbar-customer" %>
         <% end %>
 
       <% end %>
