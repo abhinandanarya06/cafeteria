@@ -1,3 +1,6 @@
+include Recaptcha::Adapters::ViewMethods
+include Recaptcha::Adapters::ControllerMethods
+
 class UsersController < ApplicationController
   skip_before_action :ensure_user_logged_in
   before_action :ensure_owner, only: :index
@@ -24,6 +27,11 @@ class UsersController < ApplicationController
       email: email,
       password: password,
     )
+    if !verify_recaptcha
+      flash[:error] = "Please verify ReCaptcha"
+      redirect_to "/users/new"
+      return
+    end
     if new_user.save
       if current_user && is_owner?
         redirect_to "/users"
