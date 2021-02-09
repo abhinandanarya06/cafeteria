@@ -1,7 +1,7 @@
 <section>
   <h2> Orders </h2>
   <% if is_owner? %>
-    <%= render partial: "owner-report" %>
+    <%= render partial: "owner-report", locals: {idate: idate, fdate: fdate} %>
   <% elsif is_clerk? %>
     <%= render partial: "clerk-porders" %>
   <% end %>

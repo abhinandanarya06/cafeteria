@@ -1,13 +1,27 @@
 <ul>
+  <%
+    if !idate.nil? && !fdate.nil?
+      orders = Order.where("created_at >= ? and created_at <= ?", idate, fdate)
+    else
+      orders = Order
+    end
+  %>
+  <%= form_with(url: "/reports", method: "get") do |form| %>
+    <%= form.date_field :idate,
+            required: true %>
+    <%= form.date_field :fdate,
+            required: true %>
+    <%= form.submit "Apply" %>
+  <% end %>
   <h2> Total Sales : Rs
-  <%= Order.delivered(true).map { |order|
+  <%= orders.delivered(true).map { |order|
         order.order_items.map { |item|
           item.menu_item_price
         }.sum
       }.sum
     %>
   </h2>
-    <% Order.delivered(true).order(delivered_at: :desc).each do |order| %>
+    <% orders.delivered(true).order(delivered_at: :desc).each do |order| %>
       <% user = order.user %>
       <% if not user.nil? %>
         <li class="smooth_border ilist">
