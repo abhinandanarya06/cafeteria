@@ -66,7 +66,7 @@ You can create menus, update menu items, see reports,...
 1. Clone this repo and go to repo's directory using terminal
 2. Create a file `recaptcha.rb` in `config/initializer` folder and add content as follows
 
-```
+```ruby
 # config/initializer/recaptcha.rb
 Recaptcha.configure do |config|
   config.site_key = "<SITE KEY>"
