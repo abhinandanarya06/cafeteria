@@ -24,7 +24,9 @@ class MenuItemsController < ApplicationController
     item.name = params[:name]
     item.description = params[:description]
     item.price = params[:price].to_f
-    item.image = params[:image]
+    if params[:image]
+      item.image = params[:image]
+    end
     if !item.save
       flash[:error] = item.errors.full_messages
     end
