@@ -3,7 +3,7 @@ include Recaptcha::Adapters::ControllerMethods
 
 class UsersController < ApplicationController
   skip_before_action :ensure_user_logged_in
-  before_action :ensure_owner, only: :index
+  before_action :ensure_owner, only: [:index, :update]
 
   def index
     render "users/index"
@@ -28,14 +28,9 @@ class UsersController < ApplicationController
       email: email,
       password: password,
     )
-    if !is_owner? && !verify_recaptcha
-      flash[:error] = "Please verify ReCaptcha"
-      redirect_to "/users/new"
-      return
-    end
     if new_user.save
       if current_user && is_owner?
-        redirect_to "/users"
+        redirect_back fallback_location: "/"
       else
         session[:current_user_id] = new_user.id
         @current_user = current_user
@@ -47,6 +42,23 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    id = params[:id]
+    role = params[:role]
+    name = params[:name]
+    email = params[:email]
+    password = params[:password]
+    user = User.find(id)
+    user.name = name
+    user.email = email
+    user.password = password
+    user.role = role
+    if !user.save
+      flash[:error] = user.errors.full_messages
+    end
+    redirect_back fallback_location: "/"
+  end
+
   def destroy
     user_id = params[:id]
     User.find(user_id).destroy
@@ -54,6 +66,6 @@ class UsersController < ApplicationController
     if order
       order.destroy
     end
-    redirect_to "/users"
+    redirect_back fallback_location: "/"
   end
 end

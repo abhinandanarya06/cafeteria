@@ -17,28 +17,28 @@ class ApplicationController < ActionController::Base
 
   def ensure_user_logged_in
     unless current_user
-      redirect_back fallback_location: "/"
+      redirect_to "/"
     end
   end
 
   def ensure_owner
     unless current_user && is_owner?
       flash[:error] = "Access Denied!. You are not owner"
-      redirect_back fallback_location: "/"
+      redirect_to "/"
     end
   end
 
   def ensure_owner_or_clerk
     unless is_owner? || is_clerk?
       flash[:error] = "Access Denied!. You are not owner or clerk"
-      redirect_back fallback_location: "/"
+      redirect_to "/"
     end
   end
 
   def ensure_customer
     unless is_customer?
       flash[:error] = "Access Denied!. You are not customer"
-      redirect_back fallback_location: "/"
+      redirect_to "/"
     end
   end
 
