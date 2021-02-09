@@ -8,9 +8,9 @@
   %>
   <%= form_with(url: "/reports", method: "get") do |form| %>
     <%= form.date_field :idate,
-            required: true %>
+            required: true, value: !idate.nil? ? idate.to_date : nil  %>
     <%= form.date_field :fdate,
-            required: true %>
+            required: true, value: !fdate.nil? ? fdate.to_date : nil %>
     <%= form.submit "Apply" %>
   <% end %>
   <h2> Total Sales : Rs
