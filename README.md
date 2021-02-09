@@ -80,6 +80,7 @@ end
 
 ```
 rails db:migrate
+rails db:seed
 ```
 
 # Database Model
