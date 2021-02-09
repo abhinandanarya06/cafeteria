@@ -10,6 +10,8 @@
       Password :<br/>
       <%= form.password_field :password, class: "credential" %>
     </div>
+    <%= recaptcha_tags %>
+    <br/>
     <%= form.submit "Sign In !", class: "btn_createm" %>
   <% end %>
 </section>

@@ -17,28 +17,28 @@ class ApplicationController < ActionController::Base
 
   def ensure_user_logged_in
     unless current_user
-      redirect_to "/"
+      redirect_back fallback_location: "/"
     end
   end
 
   def ensure_owner
     unless current_user && is_owner?
       flash[:error] = "Access Denied!. You are not owner"
-      redirect_to "/"
+      redirect_back fallback_location: "/"
     end
   end
 
   def ensure_owner_or_clerk
     unless is_owner? || is_clerk?
       flash[:error] = "Access Denied!. You are not owner or clerk"
-      redirect_to "/"
+      redirect_back fallback_location: "/"
     end
   end
 
   def ensure_customer
     unless is_customer?
       flash[:error] = "Access Denied!. You are not customer"
-      redirect_to "/"
+      redirect_back fallback_location: "/"
     end
   end
 
@@ -49,6 +49,16 @@ class ApplicationController < ActionController::Base
       @current_user = User.find(current_user_id)
     else
       nil
+    end
+  end
+
+  def verify_recaptcha?
+    if !is_owner? && !verify_recaptcha
+      flash[:error] = "Please verify ReCaptcha"
+      redirect_back fallback_location: "/"
+      return false
+    else
+      return true
     end
   end
 end
