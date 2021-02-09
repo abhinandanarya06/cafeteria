@@ -6,5 +6,5 @@ class User < ActiveRecord::Base
   validates :name, presence: true, length: { minimum: 1 }
   validates :role, presence: true, inclusion: { in: ["Owner", "Billing Clerk", "Customer"],
                                                 message: "%{value} is not a valid role" }
-  validates :email, presence: true, length: { minimum: 1 }
+  validates :email, presence: true, length: { minimum: 1 }, uniqueness: true
 end

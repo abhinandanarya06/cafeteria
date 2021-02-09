@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    return if !verify_recaptcha?
     name = params[:name]
     role = params[:role]
     if role != "Customer" && !is_owner?
@@ -27,11 +28,14 @@ class UsersController < ApplicationController
       email: email,
       password: password,
     )
+<<<<<<< HEAD
     if !is_owner? && !verify_recaptcha
       flash[:error] = "Please verify ReCaptcha"
       redirect_to "/users/new"
       return
     end
+=======
+>>>>>>> b8d76b178929abd840b12aedb4fd1e020e1b0657
     if new_user.save
       if current_user && is_owner?
         redirect_to "/users"
