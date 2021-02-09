@@ -27,7 +27,7 @@ class UsersController < ApplicationController
       email: email,
       password: password,
     )
-    if !verify_recaptcha
+    if !is_owner? && !verify_recaptcha
       flash[:error] = "Please verify ReCaptcha"
       redirect_to "/users/new"
       return
