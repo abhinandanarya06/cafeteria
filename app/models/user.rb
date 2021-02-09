@@ -7,4 +7,8 @@ class User < ActiveRecord::Base
   validates :role, presence: true, inclusion: { in: ["Owner", "Billing Clerk", "Customer"],
                                                 message: "%{value} is not a valid role" }
   validates :email, presence: true, length: { minimum: 1 }, uniqueness: true
+
+  scope :owners, -> { where("role = ?", "Owner") }
+  scope :clerks, -> { where("role = ?", "Billing Clerk") }
+  scope :customers, -> { where("role = ?", "Customer") }
 end

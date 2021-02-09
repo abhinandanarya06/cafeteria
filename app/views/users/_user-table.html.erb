@@ -1,0 +1,50 @@
+  <table width="90%" border>
+    <tr>
+      <th>ID</th>
+      <th>Role</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Password</th>
+      <th>Acc. Created on </th>
+      <th>Acc. Updated on </th>
+      <th>Update/<br/>Delete</th>
+    </tr>
+    <% users.each do |user| %>
+      <tr>
+        <%= form_with url: "/users/#{user.id}", method: "patch" do |form| %>
+          <td> <%= user.id %> </td>
+          <td>
+            <%= form.select :role, ["Customer", "Billing Clerk", "Owner"],
+                    selected: user.role
+            %>
+          </td>
+          <td>
+            <%= form.text_field :name,
+                    placeholder: "User Name",
+                    value: user.name
+            %>
+          </td>
+          <td>
+            <%= form.email_field :email,
+                    placeholder: "User Email",
+                    value: user.email
+            %>
+          </td>
+          <td>
+            <%= form.password_field :password,
+                  placeholder: "User Password",
+                  onchange: "this.form.submit()" %>
+          </td>
+
+        <td> <%= user.created_at.to_s(:short) %> </td>
+        <td> <%= user.updated_at.to_s(:short) %> </td>
+        <td>
+        <%= form.submit "Update" %>
+        <% end %>
+          <%= form_with url: "/users/#{user.id}", method: "delete" do |form| %>
+            <%= form.submit "Delete" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>

@@ -8,55 +8,12 @@
     <%= form.submit "Add User" %>
   <% end %>
   <br/>
-  <table width="90%" border>
-    <tr>
-      <th>ID</th>
-      <th>Role</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Password</th>
-      <th>Acc. Created on </th>
-      <th>Acc. Updated on </th>
-      <th>Delete</th>
-    </tr>
-    <% User.all.each do |user| %>
-      <tr>
-        <%= form_with url: "/users/#{user.id}", method: "patch" do |form| %>
-          <td> <%= user.id %> </td>
-          <td>
-            <%= form.select :role, ["Customer", "Billing Clerk", "Owner"],
-                    selected: user.role,
-                    onchange: "this.form.submit()"
-            %>
-          </td>
-          <td>
-            <%= form.text_field :name,
-                    placeholder: "User Name",
-                    value: user.name,
-                    onchange: "this.form.submit()"
-            %>
-          </td>
-          <td>
-            <%= form.email_field :email,
-                    placeholder: "User Email",
-                    value: user.email,
-                    onchange: "this.form.submit()"
-            %>
-          </td>
-          <td>
-            <%= form.password_field :password,
-                  placeholder: "User Password",
-                  onchange: "this.form.submit()" %>
-          </td>
-        <% end %>
-        <td> <%= user.created_at.to_s(:short) %> </td>
-        <td> <%= user.updated_at.to_s(:short) %> </td>
-        <td>
-          <%= form_with url: "/users/#{user.id}", method: "delete" do |form| %>
-            <%= form.submit "Delete" %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </table>
+  <h3> Owners/Admins </h3>
+  <%= render partial: "user-table", locals: {users: User.owners} %>
+  <br/>
+  <h3> Clerks </h3>
+  <%= render partial: "user-table", locals: {users: User.clerks} %>
+  <br/>
+  <h3> Customers </h3>
+  <%= render partial: "user-table", locals: {users: User.customers} %>
 </section>
