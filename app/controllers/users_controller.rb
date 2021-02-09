@@ -4,7 +4,7 @@ include Recaptcha::Adapters::ControllerMethods
 class UsersController < ApplicationController
   skip_before_action :ensure_user_logged_in
   before_action :ensure_owner, only: :index
-  before_action :ensure_user_logged_in, only: :edit
+  before_action :ensure_user_logged_in, only: [:edit, :update]
 
   def index
     render "users/index"
@@ -55,15 +55,16 @@ class UsersController < ApplicationController
       redirect_back fallback_location: "/"
       return
     end
-    role = params[:role]
+    if is_owner?
+      role = params[:role]
+      user.role = role.nil? ? user.role : role
+    end
     name = params[:name]
     email = params[:email]
     password = params[:password]
-
     user.name = name.nil? ? user.name : name
     user.email = email.nil? ? user.email : email
     user.password = password.nil? ? user.password : password
-    user.role = role.nil? ? user.role : role
     if !user.save
       flash[:error] = user.errors.full_messages
     end
