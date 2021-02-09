@@ -61,6 +61,27 @@ You can create menus, update menu items, see reports,...
   - can edit items quantity or delete items from cart
   - can place order based on items on cart
 
+# Setup
+
+1. Clone this repo and go to repo's directory using terminal
+2. Create a file `recaptcha.rb` in `config/initializer` folder and add content as follows
+
+```
+# config/initializer/recaptcha.rb
+Recaptcha.configure do |config|
+  config.site_key = "<SITE KEY>"
+  config.secret_key = "<SECRET KEY>"
+  # Uncomment the following line if you are using a proxy server:
+  # config.proxy = 'http://myproxy.com.au:8080'
+end
+```
+
+3. Deploy the project and run following commands
+
+```
+rails db:migrate
+```
+
 # Database Model
 
 - `users`
