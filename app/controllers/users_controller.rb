@@ -3,7 +3,8 @@ include Recaptcha::Adapters::ControllerMethods
 
 class UsersController < ApplicationController
   skip_before_action :ensure_user_logged_in
-  before_action :ensure_owner, only: [:index, :update]
+  before_action :ensure_owner, only: :index
+  before_action :ensure_user_logged_in, only: :edit
 
   def index
     render "users/index"
@@ -42,17 +43,27 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    render "edit"
+  end
+
   def update
     id = params[:id]
+    user = User.find(id)
+    if !is_owner? && user.id != current_user.id
+      flash[:error] = "You are not allowed to update other's profile"
+      redirect_back fallback_location: "/"
+      return
+    end
     role = params[:role]
     name = params[:name]
     email = params[:email]
     password = params[:password]
-    user = User.find(id)
-    user.name = name
-    user.email = email
-    user.password = password
-    user.role = role
+
+    user.name = name.nil? ? user.name : name
+    user.email = email.nil? ? user.email : email
+    user.password = password.nil? ? user.password : password
+    user.role = role.nil? ? user.role : role
     if !user.save
       flash[:error] = user.errors.full_messages
     end

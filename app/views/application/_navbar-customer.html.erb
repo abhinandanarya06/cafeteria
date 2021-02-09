@@ -5,52 +5,13 @@
     </li>
     <li class="small_left_pad dropdown">
       <a href="/carts" class="dropdown-btn"> Your Cart (<%= current_user.carts.map {|item| item.quantity }.sum %>) </a>
-      <section class="dropdown-content">
-        <h2> Your Cart </h2>
-        <%
-          total_price = 0
-        %>
-        <ul>
-          <% current_user.carts.each do |item| %>
-            <li class="flex">
-              <b><%= item.menu_item_name %></b>
-              <% if MenuItem.where(id: item.menu_item_id).empty? %>
-                No longer exist
-              <% else %>
-                <%
-                  total_price += item.quantity * item.menu_item_price
-                %>
-                <i class="small_left_pad">
-                @ Rs <%= item.menu_item_price * item.quantity %>
-                </i>
-                <%= form_with url: "/carts/#{item.id}", method: "patch", class: "small_left_pad" do |form| %>
-                  <%= form.number_field :quantity,
-                    value: item.quantity,
-                    placeholder: "Quantity",
-                    onchange: "this.form.submit()"
-                  %>
-                <% end %>
-              <% end %>
-              <%= form_with url: "/carts/#{item.id}", method: "delete", class: "small_left_pad" do |form| %>
-                <%= image_submit_tag "delete-48.png",
-                                  alt: "Delete",
-                                  onclick: "this.form.submit()",
-                                  class: "trashcan" %>
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
-        <% if total_price > 0 %>
-          <h3>Total Price : <%= total_price %> </h3>
-        <% else %>
-          <br/><br/>
-          <h3>Cart is empty!</h3>
-        <% end %>
-      </section>
-
+      <%= render partial: "cart-hover" %>
     </li>
     <li class="small_left_pad">
       <a href="/orders"> Your Orders </a>
+    </li>
+    <li class="small_left_pad">
+      <a href="<%= "/users/#{current_user.id}/edit" %>">Edit Your Profile</a>
     </li>
   </ul>
 </nav>

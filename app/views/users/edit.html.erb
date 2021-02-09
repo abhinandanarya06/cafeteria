@@ -1,0 +1,21 @@
+<section class="scenter">
+  <h1> Update Your profile </h1>
+
+  <%= form_with url: "/users/#{current_user.id}", method: "patch" do |form| %>
+    <div>
+      Name  :<br/>
+      <%= form.text_field :name, value: current_user.name, class: "credential" %>
+    </div>
+    <div>
+      Email :<br/>
+      <%= form.email_field :email, value: current_user.email, class: "credential" %>
+    </div>
+
+    <div>
+      Password :<br/>
+      <%= form.password_field :password, value: current_user.password, class: "credential" %>
+    </div>
+    <br/>
+    <%= form.submit "Update Profile", class: "update_btn btn" %>
+  <% end %>
+</section>
