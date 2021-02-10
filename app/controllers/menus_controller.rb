@@ -8,12 +8,10 @@ class MenusController < ApplicationController
   def create
     name = params[:name]
     new_menu = Menu.new(name: name, active: false)
-    if new_menu.save
-      redirect_to "/menus"
-    else
+    if !new_menu.save
       flash[:error] = new_menu.errors.full_messages.join(", ")
-      redirect_to "/menus"
     end
+    redirect_back fallback_location: "/menus"
   end
 
   def update
@@ -24,13 +22,13 @@ class MenusController < ApplicationController
     if not menu.save
       flash[:error] = menu.errors.full_messages.join(", ")
     end
-    redirect_to "/menus"
+    redirect_back fallback_location: "/menus"
   end
 
   def destroy
     id = params[:id]
     MenuItem.where(menu_id: id).delete_all
     menu = Menu.find(id).destroy
-    redirect_to "/menus"
+    redirect_back fallback_location: "/menus"
   end
 end

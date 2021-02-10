@@ -15,7 +15,7 @@ class MenuItemsController < ApplicationController
     if !new_menu_item.save
       flash[:error] = new_menu_item.errors.full_messages.join(", ")
     end
-    redirect_to "/menus"
+    redirect_back fallback_location: "/"
   end
 
   def update
@@ -30,12 +30,12 @@ class MenuItemsController < ApplicationController
     if !item.save
       flash[:error] = item.errors.full_messages
     end
-    redirect_to "/menus"
+    redirect_back fallback_location: "/"
   end
 
   def destroy
     id = params[:id]
     MenuItem.find(id).destroy
-    redirect_to "/menus"
+    redirect_back fallback_location: "/"
   end
 end

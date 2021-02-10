@@ -27,6 +27,6 @@ class OrdersController < ApplicationController
     else
       flash[:message] = "Marked the order as delivered on #{datetime.to_s(:short)}"
     end
-    redirect_to "/reports"
+    redirect_back fallback_location: "/reports"
   end
 end

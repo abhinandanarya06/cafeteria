@@ -18,7 +18,7 @@ class CartsController < ApplicationController
     if !success
       flash[:error] = success.errors.full_messages
     end
-    redirect_to "/menus"
+    redirect_back fallback_location: "/"
   end
 
   def update
@@ -29,12 +29,12 @@ class CartsController < ApplicationController
     if !cart_item.save
       flash[:error] = cart_item.errors.full_messages
     end
-    redirect_to "/carts"
+    redirect_back fallback_location: "/"
   end
 
   def destroy
     id = params[:id]
     Cart.find(id).destroy
-    redirect_to "/carts"
+    redirect_back fallback_location: "/"
   end
 end
