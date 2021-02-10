@@ -12,19 +12,24 @@
   </head>
 
   <body>
-    <main class="center">
-      <h1 align="center"> A Cafeteria Company </h1>
-
+    <main>
       <% if current_user %>
-
         <% if is_owner? %>
-          <%= render partial: "navbar-owner" %>
+          <%= render partial: "navbar",
+                    locals: {
+                      menus: ["Manage Users", "Manage Menu", "Sales Report"],
+                      links: ["/users", "/menus", "/reports"]} %>
         <% elsif is_clerk? %>
-          <%= render partial: "navbar-clerk" %>
+          <%= render partial: "navbar",
+                    locals: {
+                      menus: ["Pending Orders", "Order for Walkin Customer"],
+                      links: ["/reports", "/menus"]} %>
         <% elsif is_customer? %>
-          <%= render partial: "navbar-customer" %>
+          <%= render partial: "navbar",
+                    locals: {
+                      menus: ["Menu", "Cart", "Orders"],
+                      links: ["/menus", "/carts", "/orders"]} %>
         <% end %>
-
       <% end %>
 
       <% if current_user %>
