@@ -7,6 +7,7 @@
       </h2>
     </div>
     <%= form_with url: users_path, class: "mt-8 space-y-6" do |form| %>
+      <%= form.hidden_field :role, value: "Customer" %>
       <input type="hidden" name="remember" value="true">
       <div class="rounded-md shadow-sm -space-y-px">
         <div>
