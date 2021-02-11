@@ -32,12 +32,8 @@
                 form = button.parentElement.getElementsByClassName("item-form")[0]
                 form.classList.remove("hidden")
               }
-              function hideForm(button) {
-                form = button.parentElement.parentElement.parentElement.parentElement
-                form.classList.add("hidden")
-              }
             </script>
-            <%= render partial: "add-item-form", locals: {menu_id: menu.id} %>
+            <%= render partial: "add-item-form", locals: {menu_id: menu.id, item: nil} %>
         </h3>
         <div class="control hide">
           <%= render partial: "item-edit", locals: {menu: menu} %>

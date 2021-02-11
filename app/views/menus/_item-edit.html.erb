@@ -1,29 +1,18 @@
 <section align="center">
   <ul class="pad">
     <% menu.menu_items.each do |item| %>
-      <li class="flex small_bot_pad">
-        <% if item.image.attached? %>
-          <%= image_tag item.image, class: "item_image" %>
-        <% else %>
-          <img src="<%= asset_path 'no_image.png' %>" class="item_image">
-        <% end %>
-
-        <%= form_with url: "/menu_items/#{item.id}", method: "patch" do |form| %>
-          <br/>
-          <%= form.file_field :image, onchange: "this.form.submit()" %>
-          <br/><br/>
-          <%= form.text_field :name, value: item.name, class: "item_input" %> :
-          <%= form.text_field :description, value: item.description, class: "itemd_input" %> @
-          <%= form.number_field :price, value: item.price, class: "itemp_input" %>
-          <%= form.submit "Update", class: "update_btn" %>
-        <% end %>
-        <%= form_with url: "/menu_items/#{item.id}", method: "delete" do |form| %>
-          <%= image_submit_tag "delete-48.png",
-                    alt: "Delete",
-                    onclick: "this.form.submit()",
-                    class: "trashcan" %>
-        <% end %>
-      </li>
+      <div class="inline">
+        <a onclick="showUpdateForm(this)" class="cursor-pointer">
+        <%= render partial: "item-card", locals: {item: item, menu: menu} %>
+        </a>
+        <%= render partial: "update-item-form", locals: {menu_id: menu.id, item: item} %>
+      </div>
+      <script>
+        function showUpdateForm(self) {
+          form = self.parentElement.getElementsByClassName("item-form")[0]
+          form.classList.remove("hidden")
+        }
+      </script>
     <% end %>
   </ul>
 <section>

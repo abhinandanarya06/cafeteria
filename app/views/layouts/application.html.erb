@@ -65,6 +65,10 @@
       <%= yield %>
     </main>
     <script>
+      function hideForm(button) {
+        form = button.parentElement.parentElement.parentElement.parentElement
+        form.classList.add("hidden")
+      }
       callback = function() {
         div = this.getElementsByClassName("control")[0]
         div.style.display = ""
