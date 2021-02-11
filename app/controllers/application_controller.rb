@@ -35,13 +35,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def ensure_customer
-    unless is_customer?
-      flash[:error] = "Access Denied!. You are not customer"
-      redirect_to "/"
-    end
-  end
-
   def current_user
     return @current_user if @current_user
     current_user_id = session[:current_user_id]

@@ -65,7 +65,11 @@ Total Sales : Rs
                   <%= order.delivered_at.to_s(:short) %>
                 </td>
                 <td class="p-4 whitespace-nowrap text-sm text-gray-500">
-                  <%= order.user.name %>
+                  <% if order.user.role == "Billing Clerk" %>
+                    <%= "Walkin/Offline Customer" %>
+                  <% else %>
+                    <%= order.user.name %>
+                  <% end %>
                 </td>
                 <% total_amount = 0 %>
                 <td class="p-4 whitespace-nowrap text-sm text-gray-500">

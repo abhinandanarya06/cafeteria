@@ -22,8 +22,8 @@
         <% elsif is_clerk? %>
           <%= render partial: "navbar",
                     locals: {
-                      menus: ["Pending Orders", "Order for Walkin Customer"],
-                      links: ["/reports", "/menus"]} %>
+                      menus: ["Pending Orders", "Order for Walkin Customer", "Cart"],
+                      links: ["/reports", "/menus", "/carts"]} %>
         <% elsif is_customer? %>
           <%= render partial: "navbar",
                     locals: {
