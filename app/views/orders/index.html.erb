@@ -1,15 +1,15 @@
 <section>
-  <h2> Orders </h2>
   <ul>
     <% @current_user.orders.order(delivered_at: :desc).each do |order| %>
-      <li>
-        <%= @current_user.name %> <b>ordered on</b> <%= order.date.to_s(:long) %>
+      <li class="shadow-md m-5 p-2 text-gray-700 hover:text-black text-xl rounded-md hover:bg-gray-200">
+        <b>Ordered on</b> <%= order.date.to_s(:long) %>
         <% if not order.delivered_at.nil? %>
           <b>delivered on</b> <%= order.delivered_at.to_s(:long) %>
         <% end %>
-        <ul>
+        <br/>
+        <ul class="mx-32 my-3">
           <% order.order_items.each do |item| %>
-            <li><%= "#{item.menu_item_name} @ Rs #{item.menu_item_price}" %></li>
+            <li class="flex small_bot_pad px-2 inline-flex text-base leading-5 font-semibold rounded-full bg-green-100 text-green-800"><%= "#{item.menu_item_name} @ Rs #{item.menu_item_price}" %></li>
           <% end %>
         </ul>
       </li>
