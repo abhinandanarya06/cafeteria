@@ -16,9 +16,6 @@
 .hide {
   display: none;
 }
-li:hover {
-  background-color: rgb(176, 218, 146);
-}
 .smooth_border {
   border-radius: 10px;
 }

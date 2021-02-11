@@ -1,67 +1,32 @@
-<section class="center">
+<section>
   <%= form_with url: menus_path, class: "flex" do |form| %>
-      <%= form.text_field :name, placeholder: "Menu Name", class:"add_menu" %>
-    <%= form.submit "Create Menu !", class: "btn_createm" %>
+      <%= form.text_field :name, placeholder: "Menu Name", class:"w-9/12 m-2 p-2 text-gray-700 rounded-md" %>
+
+    <%= form.submit "Create Menu !", class: "my-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" %>
   <% end %>
-  <ul class="disable_list">
+  <ul>
     <% Menu.all.each do |menu| %>
       <li class="smooth_border ilist">
-        <h3 class="pad flex">
-            <%= form_with(url: "/menus/#{menu.id}", method: "patch") do |form| %>
+        <h3 class="h-20 rounded-md shadow-md flex hover:text-black text-4xl hover:bg-gray-200">
+            <%= form_with url: "/menus/#{menu.id}", method: "patch", class: "flex" do |form| %>
               <%= form.check_box :active ,
-                                onclick: "this.form.submit()",
-                                class: "checkbox_active",
-                                checked: menu.active %>
+                      onclick: "this.form.submit()",
+                      class: "m-6 p-2 w-8 h-8 checkbox_active",
+                      checked: menu.active %>
+              <%= form.text_field :name,
+                      onchange: "this.form.submit()",
+                      value: menu.name,
+                      class: "w-11/12 m-2 p-2 text-gray-700 rounded-md" %>
             <% end %>
-
-            <%= menu.name %>
-
             <%= form_with url: "/menus/#{menu.id}", method: "delete", class: "small_left_pad" do |form| %>
               <%= image_submit_tag "delete-48.png",
                           alt: "Delete",
                           onclick: "this.form.submit()",
-                          class: "trashcan" %>
+                          class: "w-8 h-8 m-6" %>
             <% end %>
         </h3>
         <div class="control hide">
-          <%= form_with url: menu_items_path, class: "pad" do |form| %>
-            <%= form.hidden_field :menu_id, value: menu.id %>
-            <%= form.text_field :name, placeholder: "Item Name", class: "add_iname" %>
-            <%= form.text_field :description, placeholder: "Description", class: "add_ides" %>
-            <%= form.number_field :price, placeholder: "Price in Rs per item", class: "add_iprice" %>
-            <%= image_submit_tag "add.png",
-                        alt: "Delete",
-                        onclick: "this.form.submit()",
-                        class: "plus" %>
-          <% end %>
-          <br/>
-          <ul class="pad">
-            <% menu.menu_items.each do |item| %>
-              <li class="flex small_bot_pad">
-                <% if item.image.attached? %>
-                  <%= image_tag item.image, class: "item_image" %>
-                <% else %>
-                  <img src="<%= asset_path 'no_image.png' %>" class="item_image">
-                <% end %>
-
-                <%= form_with url: "/menu_items/#{item.id}", method: "patch" do |form| %>
-                  <br/>
-                  <%= form.file_field :image, onchange: "this.form.submit()" %>
-                  <br/><br/>
-                  <%= form.text_field :name, value: item.name, class: "item_input" %> :
-                  <%= form.text_field :description, value: item.description, class: "itemd_input" %> @
-                  <%= form.number_field :price, value: item.price, class: "itemp_input" %>
-                  <%= form.submit "Update", class: "update_btn" %>
-                <% end %>
-                <%= form_with url: "/menu_items/#{item.id}", method: "delete" do |form| %>
-                  <%= image_submit_tag "delete-48.png",
-                            alt: "Delete",
-                            onclick: "this.form.submit()",
-                            class: "trashcan" %>
-                <% end %>
-              </li>
-            <% end %>
-          </ul>
+          <%= render partial: "item-edit", locals: {menu: menu} %>
         </div>
         <hr/>
       </li>
