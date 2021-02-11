@@ -12,6 +12,9 @@ class MenuItemsController < ApplicationController
       description: description,
       price: price,
     )
+    if params[:image]
+      new_menu_item.image = params[:image]
+    end
     if !new_menu_item.save
       flash[:error] = new_menu_item.errors.full_messages.join(", ")
     end

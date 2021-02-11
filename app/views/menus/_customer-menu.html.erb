@@ -2,6 +2,13 @@
   <ul>
     <% Menu.active.each do |menu| %>
       <li>
+        <header class="bg-white shadow">
+          <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-bold leading-tight text-gray-900">
+              <%= menu.name%> :
+            </h1>
+          </div>
+        </header>
         <h3 class="shadow-md m-2 p-2 text-gray-700 hover:text-black text-5xl rounded-md hover:bg-gray-200">
           <%= menu.name%> :
         </h3>
