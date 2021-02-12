@@ -36,7 +36,14 @@
             %>
           </div>
         </div>
+        <% if is_customer? %>
         <%= form.submit "Add to cart", class: "border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline" %>
+        <% end %>
+      <% end %>
+      <% if is_owner? %>
+      <%= form_with url: "/menu_items/#{item.id}", method: "delete" do |form| %>
+        <%= form.submit "Delete Item", class: "border border-red-500 bg-red-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline" %>
+      <% end %>
       <% end %>
       </div>
     </div>
