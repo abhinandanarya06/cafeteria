@@ -1,16 +1,22 @@
-<section class="mx-auto w-1/2 item-form hidden fixed z-10 inset-0 overflow-y-auto mt-5 md:mt-0 md:col-span-2">
-  <%= form_with url: menu_items_path, class: "m-5" do |form| %>
+<%
+  add_item_form = item.nil?
+%>
+<section class="mx-auto w-1/2 fixed z-10 inset-0 overflow-y-auto mt-5 md:mt-0 md:col-span-2">
     <%= form.hidden_field :menu_id, value: menu_id %>
     <div class="shadow overflow-hidden sm:rounded-md">
       <div class="px-4 py-5 bg-gray-200 sm:p-6">
-        <h1 class="m-2 p-2 text-2xl">Add Item </h1>
+        <h1 class="m-2 p-2 text-2xl"><%= add_item_form ? "Add Item" : "Update Item"%> </h1>
         <div>
           <label class="block text-sm font-medium text-gray-700">
             Item Image
           </label>
           <div class="mt-2 flex items-center">
             <span class="inline-block h-20 w-20 rounded-full overflow-hidden bg-gray-100">
-              <img src="<%= asset_path 'no_image.png' %>" class="w-full h-20 w-20">
+              <% if !add_item_form && item.image.attached? %>
+                <%= image_tag item.image, class: "w-full h-20 w-20" %>
+              <% else %>
+                <img src="<%= asset_path 'no_image.png' %>" class="w-full h-20 w-20">
+              <% end %>
             </span>
             <%= form.file_field :image, class: "ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
           </div>
@@ -19,28 +25,27 @@
         <div class="grid grid-cols-6 gap-6">
           <div class="col-span-6 sm:col-span-3">
             <label for="item_name" class="block text-sm font-medium text-gray-700">Item Name</label>
-            <input type="text" name="name" class="px-3 py-3 placeholder-gray-400 text-gray-700 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full">
+            <%= form.text_field :name, value: add_item_form ? nil : item.name, class: "px-3 py-3 placeholder-gray-400 text-gray-700 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full" %>
           </div>
           <br/>
           <div class="col-span-6 sm:col-span-4">
             <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-            <textarea type="text" name="description"  class="px-3 py-3 placeholder-gray-400 text-gray-700 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full"></textarea>
+            <textarea type="text" name="description"  class="px-3 py-3 placeholder-gray-400 text-gray-700 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full"><%= item.description if !add_item_form %></textarea>
           </div>
           <br/>
           <div class="col-span-6 sm:col-span-4">
             <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
-            <input type="text" name="price"  class="px-3 py-3 placeholder-gray-400 text-gray-700 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full">
+            <%= form.number_field :price, value: add_item_form ? nil : item.price, class: "px-3 py-3 placeholder-gray-400 text-gray-700 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full" %>
           </div>
         </div>
       </div>
       <div class="px-4 py-3 bg-gray-300 text-right sm:px-6">
         <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-          Add Item
+          <%= add_item_form ? "Add Item" : "Update Item" %>
         </button>
         <button type="button" onclick="hideForm(this)" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
           Cancel
         </button>
       </div>
     </div>
-  <% end %>
 </section>

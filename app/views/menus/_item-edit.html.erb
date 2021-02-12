@@ -5,7 +5,9 @@
         <a onclick="showUpdateForm(this)" class="cursor-pointer">
         <%= render partial: "item-card", locals: {item: item, menu: menu} %>
         </a>
-        <%= render partial: "update-item-form", locals: {menu_id: menu.id, item: item} %>
+        <%= form_with url: "/menu_items/#{item.id}", method: "patch", class: "m-5 item-form hidden" do |form| %>
+          <%= render partial: "add-item-form", locals: {form: form, menu_id: menu.id, item: item} %>
+        <% end %>
       </div>
       <script>
         function showUpdateForm(self) {
