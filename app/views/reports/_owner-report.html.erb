@@ -1,19 +1,19 @@
 <%
-    if !idate.nil? && !fdate.nil?
-      orders = Order.where("created_at >= ? and created_at <= ?", idate, fdate)
-    else
-      orders = Order
-    end
+  if !idate.nil? && !fdate.nil?
+    orders = Order.where("created_at >= ? and created_at <= ?", idate, fdate)
+  else
+    orders = Order
+  end
   %>
 <h2 class="shadow-md m-5 p-2 text-gray-700 hover:text-black text-3xl rounded-md hover:bg-gray-200">
-Total Sales : Rs
-    <%= orders.delivered(true).map { |order|
-          order.order_items.map { |item|
-            item.menu_item_price
-          }.sum
+  Total Sales : Rs
+  <%= orders.delivered(true).map { |order|
+        order.order_items.map { |item|
+          item.menu_item_price
         }.sum
-      %>
-  </h2>
+      }.sum
+  %>
+</h2>
 <section align="center">
   <%= form_with url: "/reports", method: "get" do |form| %>
       <%= form.date_field :idate,
@@ -65,7 +65,7 @@ Total Sales : Rs
                   <%= order.delivered_at.to_s(:short) %>
                 </td>
                 <td class="p-4 whitespace-nowrap text-sm text-gray-500">
-                  <% if order.user.role == "Billing Clerk" %>
+                  <% if !order.user.is_customer? %>
                     <%= "Walkin/Offline Customer" %>
                   <% else %>
                     <%= order.user.name %>
@@ -79,6 +79,7 @@ Total Sales : Rs
                         <%= "#{item.menu_item_name} @ Rs #{item.menu_item_price}" %>
                         <% total_amount += item.menu_item_price %>
                       </li>
+                      <br/>
                     <% end %>
                   </ul>
                 </td>
