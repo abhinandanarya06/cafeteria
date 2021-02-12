@@ -65,6 +65,18 @@
       <%= yield %>
     </main>
     <script>
+      function show(id) {
+        profile = document.getElementById(id)
+        if (profile.classList.contains('hidden')) {
+          profile.classList.remove('hidden');
+        } else {
+          profile.classList.add('hidden');
+        }
+      }
+      function showItemForm(self) {
+        form = self.parentElement.getElementsByClassName("item-form")[0]
+        form.classList.remove("hidden")
+      }
       function hideForm(button) {
         form = button.parentElement.parentElement.parentElement.parentElement
         form.classList.add("hidden")

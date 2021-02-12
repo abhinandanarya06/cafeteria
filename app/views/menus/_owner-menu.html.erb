@@ -1,6 +1,6 @@
 <section>
   <%= form_with url: menus_path, class: "flex" do |form| %>
-      <%= form.text_field :name, placeholder: "Menu Name", class:"bg-gray-200 w-9/12 m-2 p-2 text-gray-700 rounded-md" %>
+      <%= form.text_field :name, placeholder: "Menu Name", class:"bg-gray-200 text-2xl w-9/12 m-2 p-2 text-gray-700 rounded-md" %>
 
     <%= form.submit "Create Menu !", class: "my-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" %>
   <% end %>
@@ -24,17 +24,11 @@
                           onclick: "this.form.submit()",
                           class: "w-8 h-8 m-6" %>
             <% end %>
-            <button onclick="showAddItemForm(this)" class="h-10 my-4 bg-green-500 hover:bg-green-700 text-white text-xl font-bold py-2 px-4 border border-blue-700 rounded">
+            <button onclick="showItemForm(this)" class="h-10 my-4 bg-green-500 hover:bg-green-700 text-white text-xl font-bold py-2 px-4 border border-blue-700 rounded">
               Add Item
             </button>
-            <script>
-              function showAddItemForm(button) {
-                form = button.parentElement.getElementsByClassName("item-form")[0]
-                form.classList.remove("hidden")
-              }
-            </script>
             <%= form_with url: menu_items_path, class: "m-5 item-form hidden" do |form| %>
-              <%= render partial: "add-item-form", locals: {form: form, menu_id: menu.id, item: nil} %>
+              <%= render partial: "item-form", locals: {form: form, menu_id: menu.id, item: nil} %>
             <% end %>
         </h3>
         <div class="control hide">

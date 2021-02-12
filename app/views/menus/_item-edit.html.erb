@@ -2,20 +2,14 @@
   <ul class="pad">
     <% menu.menu_items.each do |item| %>
       <div class="inline">
-        <a onclick="showUpdateForm(this)" class="cursor-pointer">
+        <a onclick="showItemForm(this)" class="cursor-pointer">
         <%= render partial: "item-card", locals: {item: item, menu: menu} %>
 
         </a>
         <%= form_with url: "/menu_items/#{item.id}", method: "patch", class: "m-5 item-form hidden" do |form| %>
-          <%= render partial: "add-item-form", locals: {form: form, menu_id: menu.id, item: item} %>
+          <%= render partial: "item-form", locals: {form: form, menu_id: menu.id, item: item} %>
         <% end %>
       </div>
-      <script>
-        function showUpdateForm(self) {
-          form = self.parentElement.getElementsByClassName("item-form")[0]
-          form.classList.remove("hidden")
-        }
-      </script>
     <% end %>
   </ul>
 <section>
