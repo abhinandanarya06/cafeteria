@@ -8,7 +8,7 @@ This is a Cafeteria Management System built on Rails and supports multiple users
 
 You can create menus, update menu items, see reports,...
 
-## Deployed on [Heroku](http://cafeteria-by-abhinandan.herokuapp.com/)
+## Deployed on [Heroku](https://cafeteria-tailwindui.herokuapp.com/)
 
 ### Admin Credentials
 
@@ -16,7 +16,7 @@ You can create menus, update menu items, see reports,...
 | ------------ | --------------- |
 | **password** | admin           |
 
-[http://cafeteria-by-abhinandan.herokuapp.com](http://cafeteria-by-abhinandan.herokuapp.com/)
+[https://cafeteria-tailwindui.herokuapp.com/](https://cafeteria-tailwindui.herokuapp.com/)
 
 ---
 
