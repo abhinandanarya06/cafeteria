@@ -1,6 +1,8 @@
 <section>
   <ul>
-    <% @current_user.orders.order(delivered_at: :desc).each do |order| %>
+    <% orders = current_user.orders %>
+    <% if orders.length > 0 %>
+    <% orders.order(delivered_at: :desc).each do |order| %>
       <li class="shadow-md m-5 p-2 text-gray-700 hover:text-black text-xl rounded-md hover:bg-gray-200">
         <b>Ordered on</b> <%= order.date.to_s(:long) %>
         <% if not order.delivered_at.nil? %>
@@ -14,6 +16,9 @@
         </ul>
       </li>
       <br/>
+    <% end %>
+    <% else %>
+      <h1 class="mx-auto text-2xl text-red-900 bg-red-200 rounded p-2 m-2 text-center w-1/3"> No Order placed by You ! </h1>
     <% end %>
   </ul>
 </section>
