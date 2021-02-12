@@ -31,55 +31,53 @@
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
           <% users.each do |user| %>
-            <tr>
-              <%= form_with url: "/users/#{user.id}", method: "patch" do |form| %>
-              <td class="px-2 py-4 whitespace-nowrap">
-                <div class="flex items-center">
-                  <div class="flex-shrink-0 h-10 w-10">
-                    <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60" alt="">
-                  </div>
-                  <div class="ml-4">
-                    <div class="text-sm font-medium text-gray-900">
-                      <%= form.text_field :name,
-                              placeholder: "User Name",
-                              value: user.name
-                      %>
+            <%= form_with url: "/users/#{user.id}", method: "patch" do |form| %>
+              <tr>
+                <td class="px-2 py-4 whitespace-nowrap">
+                  <div class="flex items-center">
+                    <div class="flex-shrink-0 h-10 w-10">
+                      <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60" alt="">
                     </div>
-                    <div class="text-sm text-gray-500">
-                      <%= form.email_field :email,
-                    placeholder: "User Email",
-                    value: user.email %>
+                    <div class="ml-4">
+                      <div class="text-sm font-medium text-gray-900">
+                        <%= form.text_field :name,
+                                placeholder: "User Name",
+                                value: user.name, class: "p-1 bg-gray-100 rounded"
+                        %>
+                      </div>
+                      <div class="text-sm text-gray-500">
+                        <%= form.email_field :email,
+                                placeholder: "User Email",
+                                value: user.email, class: "p-1 bg-gray-100 rounded" %>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </td>
-              <td class="p-4 whitespace-nowrap">
-                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                  <%= form.select :role, ["Customer", "Billing Clerk", "Owner"],
-                        selected: user.role %>
-                </span>
-              </td>
-              <td class="p-4 whitespace-nowrap text-sm text-gray-500">
-                <%= form.password_field :password,
-                  placeholder: "User Password",
-                  onchange: "this.form.submit()" %>
-              </td>
-              <td class="p-4 whitespace-nowrap text-sm text-gray-500">
-                <%= user.created_at.to_s(:short) %>
-              </td>
-              <td class="p-4 whitespace-nowrap text-sm text-gray-500">
-                <%= user.updated_at.to_s(:short) %>
-              </td>
-              <td class="p-4 whitespace-nowrap text-right text-sm font-medium">
-                <button onclick="this.form.submit()" class="text-indigo-600 hover:text-indigo-900">Update</button>
-              </td>
-              <% end %>
-              <td class="p-4 whitespace-nowrap text-right text-sm font-medium">
-                <%= form_with url: "/users/#{user.id}", method: "delete" do |form| %>
-                  <%= form.submit "Delete", class: "text-red-600 hover:text-red-900"%>
-                <% end %>
-              </td>
-            </tr>
+                </td>
+                <td class="p-4 whitespace-nowrap">
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                    <%= form.select :role, ["Customer", "Billing Clerk", "Owner"],
+                          selected: user.role, class: "p-1 bg-gray-100 rounded" %>
+                  </span>
+                </td>
+                <td class="p-4 whitespace-nowrap text-sm text-gray-500">
+                  <%= form.password_field :password,
+                            placeholder: "User Password",
+                            onchange: "this.form.submit()", class: "p-1 bg-gray-100 rounded" %>
+                </td>
+                <td class="p-4 whitespace-nowrap text-sm text-gray-500">
+                  <%= user.created_at.to_s(:short) %>
+                </td>
+                <td class="p-4 whitespace-nowrap text-sm text-gray-500">
+                  <%= user.updated_at.to_s(:short) %>
+                </td>
+                <td class="p-4 whitespace-nowrap text-right text-sm font-medium">
+                  <button type="submit" class="text-indigo-600 hover:text-indigo-900">Update</button>
+                </td>
+                <td class="p-4 whitespace-nowrap text-right text-sm font-medium">
+                  <%= link_to "Delete", "/users/#{user.id}", method: "delete" %>
+                </td>
+              </tr>
+            <% end %>
 
             <!-- More items... -->
           <% end %>
