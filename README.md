@@ -53,6 +53,7 @@ You can create menus, update menu items, see reports,...
 - **Billing Clerk**
 
   - can see pending orders and mark them delivered based on datetime
+  - can place order for offline customer
 
 - **Customer**
 
@@ -60,6 +61,8 @@ You can create menus, update menu items, see reports,...
   - can add items to their cart
   - can edit items quantity or delete items from cart
   - can place order based on items on cart
+
+- All user can update their profile too
 
 # Setup
 
