@@ -13,7 +13,7 @@
   <% if owners.length > 0 %>
     <%= render partial: "user-table", locals: {users: owners} %>
   <% else %>
-    <%= "Empty" %>
+    <h1 class="text-xl text-red-800 bg-red-200 rounded text-center w-max px-5 py-2 m-2"><%= "No Registered Owner/Admin !" %></h1>
   <% end %>
   <br/>
   <h3 class="shadow-md m-2 p-2 text-gray-700 hover:text-black text-3xl rounded-md hover:bg-gray-200"> Clerks </h3>
@@ -22,7 +22,7 @@
   <% if clerks.length > 0 %>
     <%= render partial: "user-table", locals: {users: clerks} %>
   <% else %>
-    <%= "Empty" %>
+    <h1 class="text-xl text-red-800 bg-red-200 rounded text-center w-max px-5 py-2 m-2"><%= "No Registered Clerk !" %></h1>
   <% end %>
   <br/>
   <h3 class="shadow-md m-2 p-2 text-gray-700 hover:text-black text-3xl rounded-md hover:bg-gray-200"> Customers </h3>
@@ -30,6 +30,6 @@
   <% if customers.length > 0 %>
     <%= render partial: "user-table", locals: {users: User.customers} %>
   <% else %>
-    <%= "Empty" %>
+    <h1 class="text-xl text-red-800 bg-red-200 rounded text-center w-max px-5 py-2 m-2"><%= "No Registered Customer !" %></h1>
   <% end %>
 </section>
