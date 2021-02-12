@@ -1,0 +1,26 @@
+<div class="flex m-2 mx-auto w-max">
+    <button onclick="show('intro-section'); hide('routes-section'); hide('db-section');" class="text-base  rounded-r-none  hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer hover:bg-purple-700 hover:text-teal-100 bg-purple-100 text-teal-700 border duration-200 ease-in-out border-teal-600 transition">
+        <div class="flex leading-5">
+            Intro
+        </div>
+    </button>
+    <button onclick="show('routes-section'); hide('intro-section'); hide('db-section');" class="text-base  rounded-l-none rounded-r-none border-l-0 border-r-0  hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer hover:bg-purple-700 hover:text-teal-100 bg-purple-100 text-teal-700 border duration-200 ease-in-out border-teal-600 transition">
+        <div class="flex leading-5">
+            Routes Defined
+        </div>
+    </button>
+    <button onclick="show('db-section'); hide('routes-section'); hide('intro-section');" class="text-base  rounded-l-none  hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer hover:bg-purple-700 hover:text-teal-100 bg-purple-100 text-teal-700 border duration-200 ease-in-out border-teal-600 transition">
+        <div class="flex leading-5">
+            Database Structure
+        </div>
+    </button>
+</div>
+<section id="intro-section" class="m-10 p-5 w-max mx-auto text-sm text-gray-800">
+    This is intro
+</section>
+<section id="routes-section" class="m-10 p-5 w-max mx-auto hidden text-sm text-gray-800">
+    This is routes
+</section>
+<section id="db-section" class="m-10 p-5 w-max mx-auto hidden text-sm text-gray-800">
+    This is db
+</section>

@@ -73,6 +73,12 @@
           profile.classList.add('hidden');
         }
       }
+      function hide(id) {
+        e = document.getElementById(id);
+        if (!profile.classList.contains('hidden')) {
+          e.classList.add('hidden')
+        }
+      }
       function showItemForm(self) {
         form = self.parentElement.getElementsByClassName("item-form")[0]
         form.classList.remove("hidden")
