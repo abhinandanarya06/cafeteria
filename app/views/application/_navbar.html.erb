@@ -40,11 +40,12 @@
                 <%= menu%>
               </a>
             <% end %>
-            <a href="/carts" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+            <a href="/carts" class="dropdown text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
               Cart
               <div class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                 <%= current_user.carts.map {|item| item.quantity}.sum %>
               </div>
+              <%= render partial: "cart-hover" %>
             </a>
             <a href="/orders" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
               Orders
