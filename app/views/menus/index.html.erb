@@ -1,8 +1,7 @@
 <section>
-  <h2> Menus </h2>
   <% if is_owner? %>
     <%= render partial: "owner-menu" %>
-  <% elsif is_customer? %>
+  <% else %>
     <%= render partial: "customer-menu" %>
   <% end %>
 </section>

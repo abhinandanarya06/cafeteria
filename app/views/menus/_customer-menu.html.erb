@@ -1,33 +1,13 @@
-<section class="center">
+<section>
   <ul>
     <% Menu.active.each do |menu| %>
-      <li class="smooth_border">
-        <h3 class="pad">
-          <%= menu.name%>
+      <li>
+        <h3 class="shadow-md m-2 p-2 text-gray-700 hover:text-black text-5xl rounded-md hover:bg-gray-200">
+          <%= menu.name%> :
         </h3>
-        <ul>
+        <ul align="center">
           <% menu.menu_items.each do |item| %>
-            <li class="flex small_bot_pad">
-              <% if item.image.attached? %>
-                <%= image_tag item.image, class: "item_image" %>
-              <% else %>
-                <img src="<%= asset_path 'no_image.png' %>" class="item_image">
-              <% end %>
-              <div>
-                <p class="item_name"><%= "#{item.name}: " %></p>
-                <p class="item_des"><%= "#{item.description} @ Rs #{item.price}" %></p>
-                <%= form_with url: "/carts", method: "post" do |form| %>
-                  <%= form.hidden_field :user_id, value: current_user.id %>
-                  <%= form.hidden_field :menu_item_id, value: item.id %>
-                  <%= form.number_field :quantity,
-                        placeholder: "Quantity",
-                        class: "small_left_mar itemp_input"
-                  %>
-                  <% item = Cart.item_for(item.id, current_user.id) %>
-                  <%= form.submit "Add to cart(#{item.nil? ? 0 : item.quantity})", class: "update_btn w-120" %>
-                <% end %>
-              </div>
-            </li>
+            <%= render partial: "item-card", locals: {item: item, menu: menu} %>
           <% end %>
         </ul>
       </li>

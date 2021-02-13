@@ -1,19 +1,35 @@
 <section>
-  <h2> Users </h2>
   <%= form_with url: users_path do |form| %>
-      <%= form.text_field :name, placeholder: "User Name" %>
-      <%= form.select :role, ["Customer", "Billing Clerk", "Owner"] %>
-      <%= form.email_field :email, placeholder: "User Email" %>
-      <%= form.password_field :password, placeholder: "User Password" %>
-    <%= form.submit "Add User" %>
+      <%= form.text_field :name, placeholder: "User Name", class: "m-2 p-1 text-xl bg-gray-200 rounded" %>
+      <%= form.select :role, ["Customer", "Billing Clerk", "Owner"], class: "m-1 p-1 text-xl bg-gray-200 rounded" %>
+      <%= form.email_field :email, placeholder: "User Email", class: "m-2 p-1 text-xl bg-gray-200 rounded" %>
+      <%= form.password_field :password, placeholder: "User Password", class: "m-2 p-1 text-xl bg-gray-200 rounded" %>
+    <%= form.submit "Add User", class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
   <% end %>
   <br/>
-  <h3> Owners/Admins </h3>
-  <%= render partial: "user-table", locals: {users: User.owners} %>
+  <h3 class="shadow-md m-2 p-2 text-gray-700 hover:text-black text-3xl rounded-md hover:bg-gray-200"> Owners/Admins </h3>
+
+  <% owners = User.owners %>
+  <% if owners.length > 0 %>
+    <%= render partial: "user-table", locals: {users: owners} %>
+  <% else %>
+    <h1 class="text-xl text-red-800 bg-red-200 rounded text-center w-max px-5 py-2 m-2"><%= "No Registered Owner/Admin !" %></h1>
+  <% end %>
   <br/>
-  <h3> Clerks </h3>
-  <%= render partial: "user-table", locals: {users: User.clerks} %>
+  <h3 class="shadow-md m-2 p-2 text-gray-700 hover:text-black text-3xl rounded-md hover:bg-gray-200"> Clerks </h3>
+
+  <% clerks = User.clerks %>
+  <% if clerks.length > 0 %>
+    <%= render partial: "user-table", locals: {users: clerks} %>
+  <% else %>
+    <h1 class="text-xl text-red-800 bg-red-200 rounded text-center w-max px-5 py-2 m-2"><%= "No Registered Clerk !" %></h1>
+  <% end %>
   <br/>
-  <h3> Customers </h3>
-  <%= render partial: "user-table", locals: {users: User.customers} %>
+  <h3 class="shadow-md m-2 p-2 text-gray-700 hover:text-black text-3xl rounded-md hover:bg-gray-200"> Customers </h3>
+  <% customers = User.customers %>
+  <% if customers.length > 0 %>
+    <%= render partial: "user-table", locals: {users: User.customers} %>
+  <% else %>
+    <h1 class="text-xl text-red-800 bg-red-200 rounded text-center w-max px-5 py-2 m-2"><%= "No Registered Customer !" %></h1>
+  <% end %>
 </section>

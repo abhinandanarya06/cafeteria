@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    return if !verify_recaptcha?
+    return if !verify_recaptcha?("REGISTER")
     name = params[:name]
     role = params[:role]
     if role != "Customer" && !is_owner?

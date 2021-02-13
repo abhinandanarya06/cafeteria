@@ -11,4 +11,16 @@ class User < ActiveRecord::Base
   scope :owners, -> { where("role = ?", "Owner") }
   scope :clerks, -> { where("role = ?", "Billing Clerk") }
   scope :customers, -> { where("role = ?", "Customer") }
+
+  def is_owner?
+    role == "Owner"
+  end
+
+  def is_clerk?
+    role == "Billing Clerk"
+  end
+
+  def is_customer?
+    role == "Customer"
+  end
 end

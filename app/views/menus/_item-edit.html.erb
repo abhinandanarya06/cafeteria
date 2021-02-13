@@ -1,0 +1,15 @@
+<section align="center">
+  <ul class="pad">
+    <% menu.menu_items.each do |item| %>
+      <div class="inline">
+        <a onclick="showItemForm(this)" class="cursor-pointer">
+        <%= render partial: "item-card", locals: {item: item, menu: menu} %>
+
+        </a>
+        <%= form_with url: "/menu_items/#{item.id}", method: "patch", class: "m-5 item-form hidden" do |form| %>
+          <%= render partial: "item-form", locals: {form: form, menu_id: menu.id, item: item} %>
+        <% end %>
+      </div>
+    <% end %>
+  </ul>
+<section>

@@ -1,6 +1,5 @@
 class CartsController < ApplicationController
   skip_before_action :ensure_user_logged_in
-  before_action :ensure_customer
 
   def index
     render "index"

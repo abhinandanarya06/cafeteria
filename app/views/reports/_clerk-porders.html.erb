@@ -1,29 +1,36 @@
 <ul>
+  <h1 class="m-2 p-2 text-3xl text-gray-600 hover:text-black hover:bg-gray-200 rounded">Pending Orders</h1>
+  <% if Order.delivered(false).length > 0 %>
   <% Order.delivered(false).each do |order| %>
       <% user = order.user %>
       <% if (not user.nil?) %>
-        <li class="ilist">
+        <li class="mx-6 ilist m-2 p-2 rounded shadow-md hover:bg-gray-200">
           <% if current_user.role == "Billing Clerk" and order.delivered_at.nil? %>
               <%= form_with(url: "/orders/#{order.id}", method: "patch") do |form| %>
-                    <%= form.datetime_field :datetime, max: DateTime.now, min: order.date %>
-                    <%= form.check_box :active ,
+                    <%= form.datetime_field :datetime, max: DateTime.now, min: order.date, class: "p-2 bg-gray-300 mx-5 rounded h-10" %>
+                    <%= form.hidden_field :active, value: true %>
+                    <%= form.submit "Mark as Delivered" ,
                                       onclick: "this.form.submit()",
-                                      class: "checkbox_active" %>
+                                      class: "mx-5 px-5 p-1 bg-blue-200 text-blue-900 rounded-md shadow-md" %>
               <% end %>
           <% end %>
-          <h3>
+          <h3 class="m-2">
             <%= "Ordered on #{order.date.to_s(:short)} by #{user.name}" %>
           </h3>
-          <h3>
+          <h3 class="m-2">
             <%= "Delivered on #{order.delivered_at.to_s(:short)} " if not order.delivered_at.nil? %>
           </h3>
 
           <ul class="control hide">
             <% order.order_items.each do |item| %>
-              <li> <%= "#{item.menu_item_name} @ Rs #{item.menu_item_price}" %> </li>
+              <li class="m-2 flex small_bot_pad px-2 inline-flex text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+               <%= "#{item.menu_item_name} @ Rs #{item.menu_item_price}" %> </li>
             <% end %>
           </ul>
         </li>
       <% end %>
+  <% end %>
+  <% else %>
+    <h1 class="mx-auto text-2xl text-green-900 bg-green-200 rounded p-2 m-2 text-center w-1/3">No Pending Order !</h1>
   <% end %>
 </ul>

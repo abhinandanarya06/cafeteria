@@ -39,6 +39,5 @@
 yarn-debug.log*
 .yarn-integrity
 
-
 # For ReCaptcha Key
 /config/initializers/recaptcha.rb

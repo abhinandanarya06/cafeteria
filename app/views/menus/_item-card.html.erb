@@ -1,0 +1,46 @@
+<li class="inline-block w-96 h-2/6" align="left">
+  <div class="p-5">
+    <!--Card-->
+    <div class="max-w-sm rounded overflow-hidden shadow-xl">
+      <% if item.image.attached? %>
+        <%= image_tag item.image, class: "w-full h-56" %>
+      <% else %>
+        <img src="<%= asset_path 'no_image.png' %>" class="w-full h-56">
+      <% end %>
+      <div class="px-6 py-4">
+        <div class="font-bold text-xl mb-2"><%= item.name %></div>
+        <p class="text-gray-700 text-base">
+          <%= item.description %>
+        </p>
+      </div>
+      <div class="px-6 pt-4 pb-2">
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+          <%= "@ Rs #{item.price}"%>
+        </span>
+      </div>
+      <div class="px-6 py-2">
+      <%= form_with url: "/carts", method: "post" do |form| %>
+        <%= form.hidden_field :user_id, value: current_user.id %>
+        <%= form.hidden_field :menu_item_id, value: item.id %>
+        <div>
+          <label for="price" class="block text-sm font-medium text-gray-700">Quantity</label>
+          <div class="mt-1 relative rounded-md shadow-sm">
+            <%= form.number_field :quantity,
+                  placeholder: "0",
+                  class: "m-1 p-2 rounded-md bg-gray-200"
+            %>
+          </div>
+        </div>
+        <% if is_customer? %>
+        <%= form.submit "Add to cart", class: "border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline" %>
+        <% end %>
+      <% end %>
+      <% if is_owner? %>
+      <%= form_with url: "/menu_items/#{item.id}", method: "delete" do |form| %>
+        <%= form.submit "Delete Item", class: "border border-red-500 bg-red-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline" %>
+      <% end %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</li>

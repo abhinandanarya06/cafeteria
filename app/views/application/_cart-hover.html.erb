@@ -1,42 +1,41 @@
-<section class="dropdown-content">
-        <h2> Your Cart </h2>
-        <%
-          total_price = 0
-        %>
-        <ul>
-          <% current_user.carts.each do |item| %>
-            <li class="flex">
-              <b><%= item.menu_item_name %></b>
-              <% if MenuItem.where(id: item.menu_item_id).empty? %>
-                No longer exist
-              <% else %>
-                <%
-                  total_price += item.quantity * item.menu_item_price
-                %>
-                <i class="small_left_pad">
-                @ Rs <%= item.menu_item_price * item.quantity %>
-                </i>
-                <%= form_with url: "/carts/#{item.id}", method: "patch", class: "small_left_pad" do |form| %>
-                  <%= form.number_field :quantity,
-                    value: item.quantity,
-                    placeholder: "Quantity",
-                    onchange: "this.form.submit()"
-                  %>
-                <% end %>
-              <% end %>
-              <%= form_with url: "/carts/#{item.id}", method: "delete", class: "small_left_pad" do |form| %>
-                <%= image_submit_tag "delete-48.png",
-                                  alt: "Delete",
-                                  onclick: "this.form.submit()",
-                                  class: "trashcan" %>
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
-        <% if total_price > 0 %>
-          <h3>Total Price : <%= total_price %> </h3>
+<section class="dropdown-content mx-auto my-12 p-5 fixed z-10 inset-0 overflow-y-auto bg-gray-100 w-1/2 h-1/2 rounded-md">
+  <h2 class="text-xl text-gray-700"> Your Cart </h2>
+  <%
+    total_price = 0
+  %>
+  <ul class="text-gray-800">
+    <% current_user.carts.each do |item| %>
+      <li class="m-2 p-2 px-5 flex w-full hover:bg-gray-200 rounded text-xl shadow-md">
+        <b><%= item.menu_item_name %></b>
+        <% if MenuItem.where(id: item.menu_item_id).empty? %>
+          <h1 class="text-2xl bg-red-200 text-red-900 m-2 p-2 rounded-md"> No longer exist</h1>
         <% else %>
-          <br/><br/>
-          <h3>Cart is empty!</h3>
+          <%
+            total_price += item.quantity * item.menu_item_price
+          %>
+          <i class="mx-5 my-2 bg-green-200 text-green-900 rounded-lg p-2">
+          @ Rs <%= item.menu_item_price * item.quantity %>
+          </i>
+          <%= form_with url: "/carts/#{item.id}", method: "patch", class: "small_left_pad" do |form| %>
+            <%= form.number_field :quantity,
+              value: item.quantity,
+              placeholder: "Quantity",
+              onchange: "this.form.submit()",
+              class: "bg-gray-300 p-2 rounded"
+            %>
+          <% end %>
         <% end %>
-      </section>
+        <%= form_with url: "/carts/#{item.id}", method: "delete", class: "small_left_pad" do |form| %>
+          <%= form.submit "Delete Item",
+                            class: "text-sm p-2 bg-red-500 rounded" %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+  <% if total_price > 0 %>
+    <h3>Total Price : <%= total_price %> </h3>
+  <% else %>
+    <br/><br/>
+    <h1 class="mx-auto text-2xl text-red-900 bg-red-200 rounded p-2 m-2 text-center w-1/3">Cart is empty! </h1>
+  <% end %>
+</section>

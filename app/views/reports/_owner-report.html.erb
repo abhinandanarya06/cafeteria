@@ -1,51 +1,99 @@
-<ul>
-  <%
-    if !idate.nil? && !fdate.nil?
-      orders = Order.where("created_at >= ? and created_at <= ?", idate, fdate)
-    else
-      orders = Order
-    end
+<%
+  if !idate.nil? && !fdate.nil?
+    orders = Order.where("created_at >= ? and created_at <= ?", idate, fdate)
+  else
+    orders = Order
+  end
   %>
-  <%= form_with(url: "/reports", method: "get") do |form| %>
-    <%= form.date_field :idate,
-            required: true, value: !idate.nil? ? idate.to_date : nil  %>
-    <%= form.date_field :fdate,
-            required: true, value: !fdate.nil? ? fdate.to_date : nil %>
-    <%= form.submit "Apply" %>
-  <% end %>
-  <h2> Total Sales : Rs
+<h2 class="shadow-md m-5 p-2 text-gray-700 hover:text-black text-3xl rounded-md hover:bg-gray-200">
+  Total Sales : Rs
   <%= orders.delivered(true).map { |order|
         order.order_items.map { |item|
           item.menu_item_price
         }.sum
       }.sum
-    %>
-  </h2>
-    <% orders.delivered(true).order(delivered_at: :desc).each do |order| %>
-      <% user = order.user %>
-      <% if not user.nil? %>
-        <li class="smooth_border ilist">
-          <% if current_user.role == "Billing Clerk" and order.delivered_at.nil? %>
-            <%= form_with(url: "/orders/#{order.id}", method: "patch") do |form| %>
-                  <%= form.date_field :date %>
-                  <%= form.check_box :active ,
-                                    onclick: "this.form.submit()",
-                                    class: "checkbox_active" %>
+  %>
+</h2>
+<section align="center">
+  <%= form_with url: "/reports", method: "get" do |form| %>
+      <%= form.date_field :idate,
+              required: true, value: !idate.nil? ? idate.to_date : nil,
+              class: "m-2 p-2 w-1/4 h-10 bg-gray-300 rounded-md"  %>
+      <%= form.date_field :fdate,
+              required: true, value: !fdate.nil? ? fdate.to_date : nil,
+              class: "m-2 p-2 w-1/4 h-10 bg-gray-300 rounded-md" %>
+      <br/>
+      <%= form.submit "Apply", class: "m-2 p-2 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" %>
+  <% end %>
+  <div class="flex flex-col max-w-screen-lg mx-auto py-10">
+    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="py-2 align-middle inline-block sm:px-6 lg:px-8">
+        <div class="shadow border-b border-gray-200 sm:rounded-lg">
+          <table class="w-full divide-y divide-gray-200">
+            <thead class="bg-gray-100">
+              <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Order On
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Delivered On
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Order By
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Items
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Total Amount
+                </th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+            <% orders.delivered(true).order(delivered_at: :desc).each do |order| %>
+              <tr>
+                <td class="px-2 py-4 whitespace-nowrap">
+                  <div class="flex items-center">
+                    <div class="ml-4">
+                      <div class="text-sm font-medium text-gray-900">
+                        <%= order.date.to_s(:short) %>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td class="p-4 whitespace-nowrap text-sm text-gray-500">
+                  <%= order.delivered_at.to_s(:short) %>
+                </td>
+                <td class="p-4 whitespace-nowrap text-sm text-gray-500">
+                  <% if !order.user.is_customer? %>
+                    <%= "Walkin/Offline Customer" %>
+                  <% else %>
+                    <%= order.user.name %>
+                  <% end %>
+                </td>
+                <% total_amount = 0 %>
+                <td class="p-4 whitespace-nowrap text-sm text-gray-500">
+                  <ul class="pad">
+                    <% order.order_items.each do |item| %>
+                      <li class="flex small_bot_pad px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                        <%= "#{item.menu_item_name} @ Rs #{item.menu_item_price}" %>
+                        <% total_amount += item.menu_item_price %>
+                      </li>
+                      <br/>
+                    <% end %>
+                  </ul>
+                </td>
+                <td class="p-4 whitespace-nowrap text-sm text-gray-500">
+                  Rs <%= total_amount %>
+                </td>
+              </tr>
+
+              <!-- More items... -->
             <% end %>
-          <% end %>
-          <h3><%= "Ordered on #{order.date.to_s(:short)} by #{user.name}" %></h3>
-          <h3><%= "Delivered on #{order.delivered_at.to_s(:short)} " if !order.delivered_at.nil? %></h3>
-          <div class="control hide">
-            <ul class="pad">
-              <% order.order_items.each do |item| %>
-                <li class="flex small_bot_pad">
-                  <%= "#{item.menu_item_name} @ Rs #{item.menu_item_price}" %>
-                </li>
-              <% end %>
-            </ul>
-          </div>
-          <hr/>
-        </li>
-      <% end %>
-    <% end %>
-  </ul>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
