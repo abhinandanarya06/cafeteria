@@ -45,9 +45,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def verify_recaptcha?
-    return true
-    if !is_owner? && !verify_recaptcha
+  #  RECAPTCHA V3
+  def verify_recaptcha?(action)
+    if !is_owner? && !verify_recaptcha(action: action)
       flash[:error] = "Please verify ReCaptcha"
       redirect_back fallback_location: "/"
       return false
