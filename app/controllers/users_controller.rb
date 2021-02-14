@@ -56,6 +56,7 @@ class UsersController < ApplicationController
       return
     end
     if is_owner?
+      # Only owner can update user's role
       role = params[:role]
       user.role = role.nil? ? user.role : role
     end

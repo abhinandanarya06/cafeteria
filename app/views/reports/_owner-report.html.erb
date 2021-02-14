@@ -51,6 +51,7 @@
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
             <% orders.delivered(true).order(delivered_at: :desc).each do |order| %>
+              <% if order.user %>
               <tr>
                 <td class="px-2 py-4 whitespace-nowrap">
                   <div class="flex items-center">
@@ -87,7 +88,7 @@
                   Rs <%= total_amount %>
                 </td>
               </tr>
-
+              <% end %>
               <!-- More items... -->
             <% end %>
             </tbody>
