@@ -67,7 +67,8 @@ You can create menus, update menu items, see reports,...
 # Setup
 
 1. Clone this repo and go to repo's directory using terminal
-2. Create a file `recaptcha.rb` in `config/initializer` folder and add content as follows
+2. Register a site on Admin Console in [`https://www.google.com/recaptcha/about/`](https://www.google.com/recaptcha/about/) and copy SITE KEY and SECRET KEY
+3. Create a file `recaptcha.rb` in `config/initializer` folder and add content as follows
 
 ```ruby
 # config/initializer/recaptcha.rb
@@ -81,7 +82,10 @@ end
 
 3. Deploy the project and run following commands
 
-```
+```bash
+bundle
+bundle install
+bundle exec rails webpacker:install     # Enter n for not overwritting
 rails db:migrate
 rails db:seed
 ```
