@@ -51,7 +51,6 @@
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
             <% orders.delivered(true).order(delivered_at: :desc).each do |order| %>
-              <% if order.user %>
               <tr>
                 <td class="px-2 py-4 whitespace-nowrap">
                   <div class="flex items-center">
@@ -66,7 +65,9 @@
                   <%= order.delivered_at.to_s(:short) %>
                 </td>
                 <td class="p-4 whitespace-nowrap text-sm text-gray-500">
-                  <% if !order.user.is_customer? %>
+                  <% if order.user.nil? %>
+                    <p class="p-1 rounded text-red-900 bg-red-200"><%= "Deleted Customer" %></p>
+                  <% elsif !order.user.is_customer? %>
                     <%= "Walkin/Offline Customer" %>
                   <% else %>
                     <%= order.user.name %>
@@ -88,7 +89,6 @@
                   Rs <%= total_amount %>
                 </td>
               </tr>
-              <% end %>
               <!-- More items... -->
             <% end %>
             </tbody>
