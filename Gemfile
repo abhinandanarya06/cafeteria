@@ -59,3 +59,4 @@ gem "pg", "~> 1.2"
 gem "recaptcha"
 
 gem "tailwindcss-rails", "~> 0.3.3"
+gem 'cloudinary'

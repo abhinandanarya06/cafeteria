@@ -80,6 +80,17 @@ Recaptcha.configure do |config|
 end
 ```
 
+3. **For Production purpose only** - Create a file in config folder and fill as mentioned (Create cloudinary account)
+
+```yml
+production:
+  cloud_name: "<CLOUD NAME>"
+  api_key: "<API KEY>"
+  api_secret: "<SECRET KEY>"
+  secure: true
+  cdn_subdomain: true
+```
+
 3. Deploy the project and run following commands
 
 ```bash
