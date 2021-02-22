@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
   def create
     return if !verify_recaptcha?("LOGIN")
-    user = User.find_by(email: params[:email])
+    user = User.find_by(email: params[:email].downcase)
     if user && user.authenticate(params[:password])
       session[:current_user_id] = user.id
       current_user

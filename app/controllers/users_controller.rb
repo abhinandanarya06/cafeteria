@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     new_user = User.new(
       name: name,
       role: role,
-      email: email,
+      email: email.downcase,
       password: password,
     )
     if new_user.save
