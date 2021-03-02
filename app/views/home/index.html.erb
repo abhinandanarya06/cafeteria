@@ -4,23 +4,86 @@
             Intro
         </div>
     </button>
-    <button onclick="show('routes-section'); hide('intro-section'); hide('db-section');" class="text-base  rounded-l-none rounded-r-none border-l-0 border-r-0  hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer hover:bg-purple-700 hover:text-teal-100 bg-purple-100 text-teal-700 border duration-200 ease-in-out border-teal-600 transition">
+    <button onclick="show('routes-section'); hide('intro-section'); hide('db-section');" class="text-base  rounded-l-none border-l-0 border-r-0  hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer hover:bg-purple-700 hover:text-teal-100 bg-purple-100 text-teal-700 border duration-200 ease-in-out border-teal-600 transition">
         <div class="flex leading-5">
             Routes Defined
         </div>
     </button>
-    <button onclick="show('db-section'); hide('routes-section'); hide('intro-section');" class="text-base  rounded-l-none  hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer hover:bg-purple-700 hover:text-teal-100 bg-purple-100 text-teal-700 border duration-200 ease-in-out border-teal-600 transition">
-        <div class="flex leading-5">
-            Database Structure
-        </div>
-    </button>
 </div>
 <section id="intro-section" class="m-10 p-5 w-max mx-auto text-sm text-gray-800">
-    This is intro
+    <h1 class="text-4xl text-gray-900 ">Cafeteria Management System</h1>
+
+    <p class="mx-5 p-5">
+    This is a Cafeteria Management System built on Rails and supports multiple users and roles like admin, customer, and billing-clerk.
+    </p>
+    <p class="mx-5 p-5">
+    You can create menus, update menu items, see reports,...
+    </p>
+
+    <h1 class="mx-5 p-5 text-2xl">Admin Credentials</h1>
+    <table class="mx-auto p-5 border-4">
+        <tr>
+            <td class="m-2 p-2 border-2 border-gray-600">Email</td>	<td class="m-2 p-2 border-2 border-gray-600">admin@admin.com</td>
+        </tr>
+        <tr>
+            <td class="m-2 p-2 border-2 border-gray-600">Password</td>	<td class="m-2 p-2 border-2 border-gray-600">admin</td>
+        </tr>
+    </table>
+
+    <h1 class="mx-5 p-5 text-2xl">Features</h1>
+    <ul class="mx-5 p-5">
+        <li>
+            <h1 class="m-2 p-2 text-xl">Owner </h1>
+            <ul class="m-3 p-3">
+                <li>can create menu, add menu items to menus, update menu, add item images, etc</li>
+                <li>can create users of customer, billing clerk and owner as well</li>
+                <li>can see sales report</li>
+            </ul>
+        </li>
+        <li>
+            <h1 class="m-2 p-2 text-xl">Billing Clerk</h1>
+            <ul class="m-3 p-3">
+                <li>can see pending orders and mark them delivered based on datetime</li>
+                <li>can place order for offline customer</li>
+            </ul>
+        </li>
+        <li>
+            <h1 class="m-2 p-2 text-xl">Customer</h1>
+            <ul class="m-3 p-3">
+                <li>can see menus and corresponding menu items</li>
+                <li>can add items to their cart</li>
+                <li>can edit items quantity or delete items from cart</li>
+                <li>can place order based on items on cart</li>
+            </ul>
+        </li>
+        <li>All user can update their profile too</li>
+    </ul>
+
 </section>
 <section id="routes-section" class="m-10 p-5 w-max mx-auto hidden text-sm text-gray-800">
-    This is routes
-</section>
-<section id="db-section" class="m-10 p-5 w-max mx-auto hidden text-sm text-gray-800">
-    This is db
+    <h1 class="text-3xl text-gray-900">Accessible publically</h1>
+        <ul class="mx-4">
+            <li class="m-2 text-sm">/ : Home Page</li>
+            <li class="m-2 text-sm">/signin : Sign In Page</li>
+            <li class="m-2 text-sm">/users/new : Sign Up Page</li>
+        </ul>
+        <br/>
+    <h1 class="text-3xl text-gray-900">Accessible to customer</h1>
+        <ul class="mx-4">
+            <li class="m-2 text-sm">/carts : Cart Page</li>
+            <li class="m-2 text-sm">/menus : Menu Page</li>
+            <li class="m-2 text-sm">/orders : Order List Page</li>
+        </ul>
+        <br/>
+    <h1 class="text-3xl text-gray-900">Accessible to owner (admin)</h1>
+        <ul class="mx-4">
+            <li class="m-2 text-sm">/menus : Editable Menu Page</li>
+            <li class="m-2 text-sm">/users : Manage Users page</li>
+            <li class="m-2 text-sm">/reports : Sales report Page</li>
+        </ul>
+        <br/>
+    <h1 class="text-3xl text-gray-900">Accessible to billing clerk</h1>
+        <ul class="mx-4">
+            <li class="m-2 text-sm">/reports : Pending Orders Page</li>
+        </ul>
 </section>
