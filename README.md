@@ -67,28 +67,20 @@ You can create menus, update menu items, see reports,...
 # Setup
 
 1. Clone this repo and go to repo's directory using terminal
-2. Register a site on Admin Console in [`https://www.google.com/recaptcha/about/`](https://www.google.com/recaptcha/about/) and copy SITE KEY and SECRET KEY
-3. Create a file `recaptcha.rb` in `config/initializer` folder and add content as follows
 
-```ruby
-# config/initializer/recaptcha.rb
-Recaptcha.configure do |config|
-  config.site_key = "<SITE KEY>"
-  config.secret_key = "<SECRET KEY>"
-  # Uncomment the following line if you are using a proxy server:
-  # config.proxy = 'http://myproxy.com.au:8080'
-end
-```
+2. Create a `.env` file in project directory and the content should be as follows
 
-3. **For Production purpose only** - Create a file in config folder and fill as mentioned (Create cloudinary account)
+```bash
+DB_NAME=
+DB_USERNAME=
+DB_PASSWORD=
 
-```yml
-production:
-  cloud_name: "<CLOUD NAME>"
-  api_key: "<API KEY>"
-  api_secret: "<SECRET KEY>"
-  secure: true
-  cdn_subdomain: true
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+
+RECAPTCHA_SITE_KEY=
+RECAPTCHA_SECRET_KEY=
 ```
 
 3. Deploy the project and run following commands
