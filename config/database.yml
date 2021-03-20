@@ -6,9 +6,9 @@ default: &default
 development:
   <<: *default
   host: localhost
-  user: postgres
-  password: changeme
-  database: cafeteria
+  user: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  database: <%= ENV['DB_NAME'] %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

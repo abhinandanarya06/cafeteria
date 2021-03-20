@@ -39,8 +39,5 @@
 yarn-debug.log*
 .yarn-integrity
 
-# For ReCaptcha Key
-/config/initializers/recaptcha.rb
-
-# For Cloudinary Api Key
-/config/cloudinary.yml
+# For dotenv
+.env
