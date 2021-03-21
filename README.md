@@ -35,12 +35,6 @@ You can create menus, update menu items, see reports,...
 
 ---
 
-# User Guide
-
-1. Watch the video in 1.5x speed
-2. Turn on the caption
-
-[![Youtube Demo](https://img.youtube.com/vi/3KHgxM-YLGI/0.jpg)](https://www.youtube.com/watch?v=3KHgxM-YLGI)
 
 # Features
 
